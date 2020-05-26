@@ -1,4 +1,4 @@
-package com.nightingalemobile;
+package co.revelry.nightingale;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.nightingalemobile;
+package co.revelry.nightingale;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
