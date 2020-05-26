@@ -1,0 +1,78 @@
+jobs:
+  include:
+    - stage: tests
+      os: osx
+      osx_image: xcode11.1
+      language: node_js
+      node_js:
+        - node
+        - lts/*
+      name: Unit Tests
+      node_js: lts/*
+      cache:
+        directories:
+          - '~/.npm'
+      before_script:
+        - npm install -g npm@latest
+      script:
+        - npm ci
+        - npx jest --ci --passWithNoTests
+    - stage: deploy-staging-ios
+      os: osx
+      osx_image: xcode11.1
+      language: node_js
+      node_js:
+        - node
+        - lts/*
+      if: branch = develop
+      before_install:
+        - gem install bundler:2.0.2
+        - bundle install
+      script:
+        - fastlane ios beta
+    - stage: deploy-staging-android
+      sudo: true
+      language: java
+      dist: xenial
+      jdk:
+        - openjdk8
+      env:
+        # for updates check developer.android.com/studio#downloads (current 26.1.1)
+        - ANDROID_SDK_TOOLS=sdk-tools-linux-4333796.zip
+      if: branch = develop
+      before_install:
+        # download and unzip Android SDK command line tools
+        - wget -nv https://dl.google.com/android/repository/$ANDROID_SDK_TOOLS
+        - unzip -q $ANDROID_SDK_TOOLS -d $HOME/sdk
+        # set SDK tools path variable and ANDROID_HOME
+        - export PATH=$PATH:$HOME/sdk/tools/bin
+        - export ANDROID_HOME=$HOME/sdk
+        # create empty cfg file to prevent sdkmanager warning message
+        - mkdir -p $HOME/.android && touch $HOME/.android/repositories.cfg
+
+        # move upload key to /android/app directory 
+        - openssl aes-256-cbc -salt -a -d -K $key128 -iv $iv
+          -in secrets.tar.enc -out secrets.tar
+        - tar xvf secrets.tar
+        - cp .creds/nightingalemobile-upload-key.keystore ./android/app
+
+        - gem install bundler:2.0.2
+        - bundle install
+        # accept licenses for all available packages that have not already been accepted
+        - yes | sdkmanager --licenses
+        - npm ci
+        - npx jetify
+        - sudo sysctl fs.inotify.max_user_watches=524288
+        - sudo sysctl -p
+
+      before_script:
+        # set executable flag for gradle wrapper
+        - chmod +x android/gradlew
+        # create dir for gradle settings
+        - mkdir -p $HOME/.gradle
+        # disable gradle daemon for current user
+        - echo "org.gradle.daemon=false" >> $HOME/.gradle/gradle.properties
+        # set gradle log format to plain
+        - echo "org.gradle.console=plain" >> $HOME/.gradle/gradle.properties
+      script:
+        - fastlane android beta

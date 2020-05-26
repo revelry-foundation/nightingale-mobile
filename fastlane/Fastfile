@@ -1,0 +1,79 @@
+fastlane_version '2.140.0'
+
+before_all do
+  ensure_git_branch(
+    branch: 'HEAD'
+  )
+  ensure_git_status_clean
+  git_pull
+end
+
+platform :ios do
+  desc 'Fetch certificates and provisioning profiles'
+
+  # TODO: have user run match locally before going through setup
+  lane :certificates do
+    match(app_identifier: 'com.nightingalemobile', type: 'development')
+    match(app_identifier: 'com.nightingalemobile', type: 'appstore')
+  end
+
+  desc 'Build the iOS application.'
+  private_lane :build do
+    match(app_identifier: 'com.nightingalemobile', type: 'appstore', readonly: true)
+    sh "npm install"
+    cocoapods(
+      podfile: "./ios/Podfile"
+    )
+    disable_automatic_code_signing(path: './ios/nightingalemobile.xcodeproj')
+
+    update_project_provisioning(
+      xcodeproj: './ios/nightingalemobile.xcodeproj',
+      build_configuration: 'Release',
+      profile: ENV['sigh_com.nightingalemobile_appstore_profile-path']
+    )
+
+    update_project_team(
+      path: "./ios/nightingalemobile.xcodeproj",
+      teamid: ENV['sigh_com.nightingalemobile_appstore_team-id']
+    )
+    
+    increment_build_number(xcodeproj: './ios/nightingalemobile.xcodeproj')
+    gym(workspace: './ios/nightingalemobile.xcworkspace', configuration: 'Release')
+    enable_automatic_code_signing(path: './ios/nightingalemobile.xcodeproj')
+  end
+
+  desc 'Ship to Testflight.'
+  lane :beta do
+    xcversion(version: '11.1')
+    setup_travis
+    build
+    pilot(username: "harley@revelry.co", skip_waiting_for_build_processing: true)
+    commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/nightingalemobile.xcodeproj', force: true)
+    push_to_git_remote(remote_branch: 'develop')
+  end
+end
+
+platform :android do
+  desc 'Build the Android application.'
+  private_lane :build do
+    gradle(task: 'clean', project_dir: 'android/')
+    gradle(task: 'assemble', build_type: 'release', project_dir: 'android/')
+  end
+
+  desc 'Ship to Playstore Beta.'
+  lane :beta do
+    increment_version_code(
+      gradle_file_path: "android/app/build.gradle",
+    )
+    build
+    supply(
+      track: 'beta',
+      track_promote_to: 'beta',
+      # json_key: './.creds/api-4707979698125214219-894062-0cfb532ec633.json',
+      package_name: 'com.nightingalemobile',
+      release_status: 'draft'
+    )
+    git_commit(path: "android/app/build.gradle", message: "[skip travis] Bump build android")
+    push_to_git_remote(remote_branch: 'develop')
+  end
+end
