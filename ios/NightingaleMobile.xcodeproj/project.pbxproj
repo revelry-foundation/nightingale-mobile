@@ -769,7 +769,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NightingaleMobile;
+				PRODUCT_BUNDLE_IDENTIFIER = co.revelry.nightingale;
 				PRODUCT_NAME = NightingaleMobile;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -795,7 +795,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NightingaleMobile;
+				PRODUCT_BUNDLE_IDENTIFIER = co.revelry.nightingale;
 				PRODUCT_NAME = NightingaleMobile;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
