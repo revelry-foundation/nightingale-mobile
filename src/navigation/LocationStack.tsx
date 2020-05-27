@@ -1,17 +1,26 @@
 import React, {Component} from 'react'
 import {View, Text, TextInput, TouchableHighlight, Alert} from 'react-native'
-// import BusyButton from '../BusyButton'
 // import {Colors} from '../../styles'
 import LoginStyles from '../styles/LogInStyles'
-// import {AuthStackProps} from '../../navigation/AuthStack'
-// import CheckBox from 'react-native-check-box'
+import Geolocation from '@react-native-community/geolocation'
+import SInfo from 'react-native-sensitive-info'
 
 const loginStyles = LoginStyles.createStyles()
 
 class LocationsInterface extends Component {
   state = {
-    places: [],
+    locations: SInfo.getAllItems({
+      sharedPreferencesName: 'shared_preferences',
+      keychainService: 'app',
+    }).then(values => {
+      console.log(values) //value1, value2
+    }),
     deviceId: '',
+  }
+  config = {skipPermissionRequests: true}
+
+  componentDidMount() {
+    Geolocation.setRNConfiguration()
   }
 
   render() {
