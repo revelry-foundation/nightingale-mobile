@@ -14,7 +14,7 @@ platform :ios do
   # TODO: have user run match locally before going through setup
   lane :certificates do
     match(app_identifier: 'co.revelry.nightingale', type: 'development')
-    match(app_identifier: 'co.revelry.nightingale', type: 'appstore')
+    match(type: 'appstore')
   end
 
   desc 'Build the iOS application.'
