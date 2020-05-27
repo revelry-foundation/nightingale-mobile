@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.nightingalemobile",
+    package = "co.revelry.nightingale",
 )
 
 android_resource(
     name = "res",
-    package = "com.nightingalemobile",
+    package = "co.revelry.nightingale",
     res = "src/main/res",
 )
 
