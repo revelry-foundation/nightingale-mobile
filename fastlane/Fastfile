@@ -44,10 +44,10 @@ platform :ios do
 
   desc 'Ship to Testflight.'
   lane :beta do
-    xcversion(version: '11.1')
+    xcversion(version: '11.5')
     setup_travis
     build
-    pilot(username: "harley@revelry.co", skip_waiting_for_build_processing: true)
+    pilot(username: "robert@revelry.co", skip_waiting_for_build_processing: true)
     commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/nightingalemobile.xcodeproj', force: true)
     push_to_git_remote(remote_branch: 'develop')
   end
