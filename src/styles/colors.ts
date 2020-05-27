@@ -1,5 +1,10 @@
-export const brandPrimary = '#F0AD00'
-export const brandPrimaryLight = '#FFDA7A'
+import harmoniumTokens from './harmonium-tokens'
+
+export const brandPrimary = harmoniumTokens.color.brand.primary.value
+export const brandPrimaryLight = harmoniumTokens.color.brand.primaryLight.value
+export const brandSecondary = harmoniumTokens.color.brand.secondary.value
+export const brandTertiary = harmoniumTokens.color.brand.tertiary.value
+
 export const brandBlue = '#252465'
 export const brandGrey = '#474747'
 export const white = '#FFFFFF'
