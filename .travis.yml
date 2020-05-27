@@ -1,78 +1,36 @@
 jobs:
   include:
-    - stage: tests
-      os: osx
-      osx_image: xcode11.1
-      language: node_js
-      node_js:
-        - node
-        - lts/*
-      name: Unit Tests
-      node_js: lts/*
-      cache:
-        directories:
-          - '~/.npm'
-      before_script:
-        - npm install -g npm@latest
-      script:
-        - npm ci
-        - npx jest --ci --passWithNoTests
-    - stage: deploy-staging-ios
-      os: osx
-      osx_image: xcode11.1
-      language: node_js
-      node_js:
-        - node
-        - lts/*
-      if: branch = develop
-      before_install:
-        - gem install bundler:2.0.2
-        - bundle install
-      script:
-        - fastlane ios beta
-    - stage: deploy-staging-android
-      sudo: true
-      language: java
-      dist: xenial
-      jdk:
-        - openjdk8
-      env:
-        # for updates check developer.android.com/studio#downloads (current 26.1.1)
-        - ANDROID_SDK_TOOLS=sdk-tools-linux-4333796.zip
-      if: branch = develop
-      before_install:
-        # download and unzip Android SDK command line tools
-        - wget -nv https://dl.google.com/android/repository/$ANDROID_SDK_TOOLS
-        - unzip -q $ANDROID_SDK_TOOLS -d $HOME/sdk
-        # set SDK tools path variable and ANDROID_HOME
-        - export PATH=$PATH:$HOME/sdk/tools/bin
-        - export ANDROID_HOME=$HOME/sdk
-        # create empty cfg file to prevent sdkmanager warning message
-        - mkdir -p $HOME/.android && touch $HOME/.android/repositories.cfg
-
-        # move upload key to /android/app directory 
-        - openssl aes-256-cbc -salt -a -d -K $key128 -iv $iv
-          -in secrets.tar.enc -out secrets.tar
-        - tar xvf secrets.tar
-        - cp .creds/nightingalemobile-upload-key.keystore ./android/app
-
-        - gem install bundler:2.0.2
-        - bundle install
-        # accept licenses for all available packages that have not already been accepted
-        - yes | sdkmanager --licenses
-        - npm ci
-        - npx jetify
-        - sudo sysctl fs.inotify.max_user_watches=524288
-        - sudo sysctl -p
-
-      before_script:
-        # set executable flag for gradle wrapper
-        - chmod +x android/gradlew
-        # create dir for gradle settings
-        - mkdir -p $HOME/.gradle
-        # disable gradle daemon for current user
-        - echo "org.gradle.daemon=false" >> $HOME/.gradle/gradle.properties
-        # set gradle log format to plain
-        - echo "org.gradle.console=plain" >> $HOME/.gradle/gradle.properties
-      script:
-        - fastlane android beta
+  - stage: tests
+    os: osx
+    osx_image: xcode11.1
+    language: node_js
+    node_js: lts/*
+    name: Unit Tests
+    cache:
+      directories:
+      - "~/.npm"
+    before_script:
+    - npm install -g npm@latest
+    script:
+    - npm ci
+    - npx jest --ci --passWithNoTests
+  - stage: deploy-staging-ios
+    os: osx
+    osx_image: xcode11.1
+    language: node_js
+    node_js:
+    - node
+    - lts/*
+    if: branch = master
+    before_install:
+    - git checkout master
+    - git pull origin master
+    - git clean -d -f
+    - gem install bundler:2.0.2
+    - bundle install
+    script:
+    - fastlane ios beta
+env:
+  global:
+  - secure: cgpi13Wa8js7P2eLr2VjPhRrlxlCZJSzPvu9LHR98kCRhms2wshVMWcnx32GyQ2pbvSkwS/90+VWS6pkz6GhhFt+lxndWprzt2yKAyywMihIsJ1Zz8q+jMX3fyq5Pkct/Ey5r7h0t6gb0w/tj93+ojcQcH+ZVT25ppbxYsb0adVyqtm+6V3jk1slpcTRCgaROS+fVSHsVwiuIgne5WXfdjhnV472LmFoCyLcK3VpDpwy32be3z8KMWk3jn2M4y0xFvuMkQDhLCMythDBNSnnuS6FKnK0GNIEs90LoARvbzwfGyrn2uvKfGjto044Ml2kukLKriMOMd5xrIrNChiTfBEBixGZ0MMXEUFW0y1fWz29wR1ohuWxN9kaYXi7tqggl1z2vAM0ipdIEpewPavqwFVFnQSvXz8+dcZHFbAQJ6QkovEoO79PBzZSzLhA8fMdRFkXl6tc3bl2FBot1Z+iisGtEdJoWvmDv1J7AqoUCOV1Okc4IQTFJB2KLUSLBwGI3LjXWwg5tkIlL6JAPATjVshMiMKrE8cItetJXfFXGsWlaMk2l2lSI2Iq4UQGqZwzG5mPcHYrlUHV1r624GBnwxH3lZIHOB3b1id61Vm6qyeqdpfUt1xArESmYUbOmvmkg+hcqtswNYrX2jXhX66bewABKibhAQdW/9gXz0gWFlU=
+  - secure: WVJl5iuzF1U7romA2VIfcemkcDVj+6L4rHSR/mxzHaQS0cSDa6QDnxlhCUUJeztwcTsqOXrNjtL9sVYkEdWV26KhT/EabMzPYy7Dg7lIS9vep5sgjdXcQwGWwckUJDcdfF/pCbToMsOvghKzg22lSX4+zOtVexNA2+ygXpMow+nKeGZApIKndZiyBCDEbwdq1Bs/0kAR2OH18NcPO35Q5H4JEfrSoioGSB6GYVqcDig+7TuYZ5OqrKlZHQS7p72gBoj67fLZXmfBoZYdZHhBskchJvAuKjCa/HAK6Kxw9LbqsarK5mg6qCDf3a3mhnltGgomCjmtSHVokRtdShzQz1SpZuCti/iKB5TUKaQR3QUQEdxBICh/jp/rxOquiyvczcUHQMRvM0JC3YdToDkfQhLOyC8N+oCt7SqjEiDrBHcX5sRAgZiIpw+RqEoNO433ji5ZGUF0T5+qfiCNnqU4esmkEIEX/kYDZ+uyC79kjoEKFfmGaP89ygItzhfXebn1W1XuNZz7ZuRLTLyHDKzSVIAhw/Yocu+07VjBRNjg31icBkb29/yStbJVZH85JkNNJ6g3VyezDePcM4FF7fg5P79aRXrVJyzhI1nuMQoGflQyLxpNngDC0ojkjl+pmZsLiM9fESJPSvzNYlDziYHXWUoFxMyLD15M1Nbext1ioTQ=
