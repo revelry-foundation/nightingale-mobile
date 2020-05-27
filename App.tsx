@@ -11,6 +11,7 @@ import AuthLoadingScreen from './src/components/Auth/AuthLoadingScreen'
 import AuthStack from './src/navigation/AuthStack'
 import AppStack from './src/navigation/AppStack'
 import AuthContainer from './src/containers/AuthContainer'
+import LocationInterface from './src/navigation/LocationStack'
 
 class AuthLoadingWithStore extends Component {
   static router = AuthStack.router
@@ -35,6 +36,7 @@ const AppNavigator = createSwitchNavigator(
     AuthLoading: AuthLoadingWithStore,
     App: AppStack,
     Auth: AuthStack,
+    Locations: LocationInterface,
   },
   {
     initialRouteName: 'AuthLoading',

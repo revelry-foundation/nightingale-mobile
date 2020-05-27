@@ -25,19 +25,21 @@ class CreateAccount extends Component<AuthStackProps, object> {
       navigation: {navigate},
     } = this.props
 
-    const user = {
-      new_password: this.state.password,
-      new_password_confirmation: this.state.confirmPassword,
-      email: this.state.email,
-      phone: this.state.phone,
-    }
+    navigate('Home')
 
-    try {
-      await createUser(user)
-      navigate('AuthLoading')
-    } catch (e) {
-      Alert.alert(e.title, e.message)
-    }
+    // const user = {
+    //   new_password: this.state.password,
+    //   new_password_confirmation: this.state.confirmPassword,
+    //   email: this.state.email,
+    //   phone: this.state.phone,
+    // }
+
+    // try {
+    //   await createUser(user)
+    //   navigate('AuthLoading')
+    // } catch (e) {
+    //   Alert.alert(e.title, e.message)
+    // }
   }
 
   render() {
