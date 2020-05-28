@@ -4,16 +4,16 @@ export const fullWidth = Dimensions.get('window').width
 
 import * as Colors from '../colors'
 import * as Spacing from '../spacing'
+import * as Global from '../global'
 
 export const pageWrapper = {
-  backgroundColor: Colors.lightestGray,
+  backgroundColor: Colors.white,
+  borderRadius: Global.globalRadiusLarge,
   flex: 1,
+  padding: Spacing.globalPadding,
   width: fullWidth,
 }
 export const base = {
-  backgroundColor: Colors.lightestGray,
-  paddingHorizontal: Spacing.globalPadding,
-  paddingVertical: Spacing.globalPaddingLarge,
   width: fullWidth,
 }
 export const container = {

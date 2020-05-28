@@ -18,16 +18,18 @@ export default class Index extends Component<AuthStackProps, object> {
             <TouchableHighlight
               style={loginStyles.button}
               underlayColor={Colors.buttonPrimaryBkgdActive}
-              onPress={() => this.props.navigation.navigate('CreateAccount')}>
+              onPress={() => this.props.navigation.navigate('CreateAccount')}
+            >
               <Text style={loginStyles.buttonText}>Get Started</Text>
             </TouchableHighlight>
           </View>
           <View style={loginStyles.buttonContainer}>
             <TouchableHighlight
-              style={loginStyles.buttonLinkWhite}
-              underlayColor={Colors.buttonLinkWhiteBkgdActive}
-              onPress={() => this.props.navigation.navigate('Login')}>
-              <Text style={loginStyles.buttonLinkWhiteText}>Log In</Text>
+              style={loginStyles.button}
+              underlayColor={Colors.buttonPrimaryBkgdActive}
+              onPress={() => this.props.navigation.navigate('StyleGuide')}
+            >
+              <Text style={loginStyles.buttonText}>Styleguide</Text>
             </TouchableHighlight>
           </View>
         </View>

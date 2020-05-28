@@ -14,16 +14,12 @@ import {StyleSheet} from 'react-native'
 const LoginStyles = {
   pageWrapper: {
     ...Containers.pageWrapper,
-    backgroundColor: 'transparent',
   },
   container: {
     ...Containers.container,
-    backgroundColor: 'transparent',
   },
   containerExpand: {
     ...Containers.containerExpand,
-    backgroundColor: 'transparent',
-    justifyContent: 'center',
   },
   horizontalSpaceAround: {
     ...Containers.horizontalSpaceAround,

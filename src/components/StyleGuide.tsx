@@ -9,6 +9,7 @@ export default class StyleGuide extends Component {
   render() {
     return (
       <View style={loginStyles.pageWrapper}>
+        <Text style={loginStyles.h1}>Style Guide</Text>
 
         <View style={Chips.chipContainer}>
 
@@ -26,12 +27,6 @@ export default class StyleGuide extends Component {
             <Text style={Chips.chipText}>John Doe</Text>
           </View>
 
-        </View>
-
-        <View style={loginStyles.containerExpand}>
-          <View>
-            <Text style={loginStyles.h1}>Style Guide</Text>
-          </View>
         </View>
       </View>
     )
