@@ -48,7 +48,7 @@ export const buttonPrimaryBkgd = brandPrimary
 export const buttonPrimaryBkgdActive = brandPrimaryLight
 
 export const buttonSecondaryBkgd = 'transparent'
-export const buttonSecondaryBkgdActive = lighterGray
+export const buttonSecondaryBkgdActive = brandPrimaryLight
 
 export const buttonWhiteBkgd = white
 export const buttonWhiteBkgdActive = lightestGray
