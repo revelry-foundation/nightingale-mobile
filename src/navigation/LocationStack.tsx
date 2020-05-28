@@ -56,7 +56,9 @@ class LocationsInterface extends Component {
     return (
       <View style={loginStyles.pageWrapper}>
         <View style={loginStyles.containerExpand}>
-          <Text>{formatAddressInfo(locations)}</Text>
+          {locations.map(location =. (
+          <Text>{formatAddressInfo(location)}</Text>
+          ))}
         </View>
       </View>
     )

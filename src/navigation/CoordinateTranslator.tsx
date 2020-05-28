@@ -34,19 +34,16 @@ export function reverseGeocode(coords) {
   }
 }
 
-export function formatAddressInfo(locations) {
-  return locations.map(location => {
+export async function formatAddressInfo(location) {
     const parsedLocation = JSON.parse(location)
-    const response = reverseGeocode(parsedLocation.coords)
+    const response = await reverseGeocode(parsedLocation.coords)
 
-    // if (response[1].results && response[1].results.length) {
-    //   const addressInfo = response[1].results[0].formatted_address
+     if (response[1].results && response[1].results.length) {
+       const addressInfo = response[1].results[0].formatted_address
 
-    //   this.setState({addressInfo})
-    // }
+       return addressInfo
+     }
 
-    debugger
-    console.log(response, 'THIS IS THE RESPONSE')
   })
 }
 
