@@ -21,7 +21,7 @@ async function doRequest(endpoint) {
 }
 
 export function reverseGeocode(coords) {
-  console.log(coords)
+  console.log(coords, 'THE COORDS COMING IN')
 
   const {latitude, longitude} = coords
   console.log(latitude, longitude, 'THE COORDINATES')
