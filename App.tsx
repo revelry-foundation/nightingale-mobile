@@ -7,6 +7,7 @@ import React, {Component} from 'react'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {StatusBar} from 'react-native'
 import AppStack from './src/navigation/AppStack'
+import LocationListener from './src/components/LocationListener'
 
 const AppNavigator = createSwitchNavigator(
   {
@@ -29,6 +30,7 @@ export default class App extends Component {
     return (
       <React.Fragment>
         <StatusBar barStyle="dark-content" />
+        <LocationListener />
         <AppContainer />
       </React.Fragment>
     )

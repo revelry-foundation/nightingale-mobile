@@ -49,16 +49,12 @@ class LocationsInterface extends Component {
   }
 
   render() {
-    const {locations} = this.state
-    const {
-      navigation: {navigate},
-    } = this.props
     return (
       <View style={loginStyles.pageWrapper}>
         <View style={loginStyles.containerExpand}>
-          {locations.map(location =. (
-          <Text>{formatAddressInfo(location)}</Text>
-          ))}
+          {locations.map(
+            (location = <Text>{formatAddressInfo(location)}</Text>)
+          )}
         </View>
       </View>
     )

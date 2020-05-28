@@ -11,12 +11,18 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+// IMPORTANT:  Paste import ABOVE the DEBUG macro 
+#import <TSBackgroundFetch/TSBackgroundFetch.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSString *apiUrl = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"API_URL"];
   NSDictionary *props = @{@"apiUrl" : apiUrl};
+
+  // [REQUIRED] Register BackgroundFetch
+  [[TSBackgroundFetch sharedInstance] didFinishLaunching];
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
