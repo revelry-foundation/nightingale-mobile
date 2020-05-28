@@ -50,32 +50,16 @@ export const primary = {
 export const primaryText = {
   ...baseText,
 }
-
 export const secondary = {
   ...base,
   backgroundColor: Colors.buttonSecondaryBkgd,
-  borderColor: Colors.lightGray,
+  borderColor: Colors.brandPrimary,
   borderStyle: 'solid',
   borderWidth: 1,
 }
 export const secondaryText = {
   ...baseText,
   color: Colors.bodyColor,
-}
-export const secondaryBlue = {
-  ...base,
-  backgroundColor: Colors.buttonSecondaryBkgd,
-  borderColor: Colors.brandBlue,
-  borderStyle: 'solid',
-  borderWidth: 1,
-}
-export const secondaryBlueText = {
-  ...baseText,
-  color: Colors.brandBlue,
-}
-export const smallSecondaryBlueText = {
-  ...secondaryBlueText,
-  fontSize: buttonSmallTextSize,
 }
 
 export const disabled = {

@@ -19,9 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSString *apiUrl = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"API_URL"];
-  NSString *apiClientId = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"API_CLIENT_ID"];
-  NSString *apiClientSecret = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"API_CLIENT_SECRET"];
-  NSDictionary *props = @{@"apiUrl" : apiUrl, @"apiClientId" : apiClientId, @"apiClientSecret" : apiClientSecret};
+  NSDictionary *props = @{@"apiUrl" : apiUrl};
 
   // [REQUIRED] Register BackgroundFetch
   [[TSBackgroundFetch sharedInstance] didFinishLaunching];

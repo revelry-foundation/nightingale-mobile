@@ -52,7 +52,7 @@ export const helpText = {
   marginBottom: Spacing.globalMarginLarge,
 }
 export const textLink = {
-  color: Colors.brandPrimary,
+  color: Colors.brandSecondary,
   fontSize: bodyFontSize,
 }
 export const textLinkSmall = {

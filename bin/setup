@@ -1,0 +1,13 @@
+#!/bin/bash +xe
+
+cd $(pwd)/$(dirname $0)/..
+
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git || echo "nodejs already installed"
+bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby.git || echo "ruby already installed"
+
+asdf install
+npm install
+gem install bundle
+bundle install
+cd ios && bundle exec pod install && cd ../
