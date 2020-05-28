@@ -30,7 +30,7 @@ const SettingsStack = createStackNavigator(
     initialRouteName: 'Settings',
     defaultNavigationOptions: ({navigation}) => ({
       title: 'Settings',
-      headerLeft: (
+      headerLeft: () => (
         <Feather
           style={{left: 10}}
           name="menu"
