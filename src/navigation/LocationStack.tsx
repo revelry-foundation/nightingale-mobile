@@ -11,7 +11,7 @@ import {
 // import {Colors} from '../../styles'
 import LoginStyles from '../styles/LogInStyles'
 import SInfo from 'react-native-sensitive-info'
-import {reverseGeocode} from '../navigation/CoordinateTranslator'
+import {formatAddressInfo} from '../navigation/CoordinateTranslator'
 import {
   start_tracking,
   initial_pos,
@@ -48,12 +48,6 @@ class LocationsInterface extends Component {
     )
   }
 
-  formatAddressInfo(locations) {
-    locations.map(location => {
-      reverseGeocode(JSON.parse(location).coords)
-    })
-  }
-
   render() {
     const {locations} = this.state
     const {
@@ -62,7 +56,7 @@ class LocationsInterface extends Component {
     return (
       <View style={loginStyles.pageWrapper}>
         <View style={loginStyles.containerExpand}>
-          <Text>{this.formatAddressInfo(locations)}</Text>
+          <Text>{formatAddressInfo(locations)}</Text>
         </View>
       </View>
     )

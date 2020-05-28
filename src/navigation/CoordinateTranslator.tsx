@@ -21,8 +21,6 @@ async function doRequest(endpoint) {
 }
 
 export function reverseGeocode(coords) {
-  console.log(coords, 'THE COORDS COMING IN')
-
   const {latitude, longitude} = coords
   console.log(latitude, longitude, 'THE COORDINATES')
   const apiKey = 'AIzaSyCeNmcCL-Qu3PF47BZNzFhSV36tSzrSPEk'
@@ -34,6 +32,22 @@ export function reverseGeocode(coords) {
   } else {
     return [false, {}]
   }
+}
+
+export function formatAddressInfo(locations) {
+  return locations.map(location => {
+    const parsedLocation = JSON.parse(location)
+    const response = reverseGeocode(parsedLocation.coords)
+
+    // if (response[1].results && response[1].results.length) {
+    //   const addressInfo = response[1].results[0].formatted_address
+
+    //   this.setState({addressInfo})
+    // }
+
+    debugger
+    console.log(response, 'THIS IS THE RESPONSE')
+  })
 }
 
 // {"plus_code": {
