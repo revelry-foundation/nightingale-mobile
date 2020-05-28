@@ -63,3 +63,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+# Decrypted CI deploy key
+/ci/certs_key
