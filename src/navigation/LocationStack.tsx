@@ -1,9 +1,17 @@
 import React, {Component} from 'react'
-import {View, Text, TextInput, TouchableHighlight, Alert, NavigatorIOS} from 'react-native'
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  Alert,
+  NavigatorIOS,
+} from 'react-native'
 // import {Colors} from '../../styles'
 import LoginStyles from '../styles/LogInStyles'
 import Geolocation from '@react-native-community/geolocation'
 import SInfo from 'react-native-sensitive-info'
+import {reverseGeocode} from '../navigation/CoordinateTranslator'
 
 const loginStyles = LoginStyles.createStyles()
 
@@ -12,8 +20,9 @@ class LocationsInterface extends Component {
     locations: SInfo.getAllItems({
       sharedPreferencesName: 'shared_preferences',
       keychainService: 'app',
-    }).then(values => values)
-    .catch(null),
+    })
+      .then(values => values)
+      .catch(null),
   }
 
   // so when a user opens the app, we start tracking position in background
@@ -24,10 +33,10 @@ class LocationsInterface extends Component {
   // 4. use Geolocation.watchPosition to generate events. each success callback
   // should be saved (possibly use triangulation to avoid adding places super close to
   // previous locations)
-  // 5. 
+  // 5.
 
   // COMPONENT 1
-  // make another file thats more functional, geared towards tracking location 
+  // make another file thats more functional, geared towards tracking location
   // immediately and constantly updating
 
   // COMPONENT 2
@@ -41,22 +50,37 @@ class LocationsInterface extends Component {
       enableHighAccuracy: true,
       distanceFilter: 75,
       useSignificantChanges: true,
-    };
+    }
     Geolocation.getCurrentPosition(this.success, this.error, options)
   }
 
+  //   async fetchAddressInfo() {
+  //     const response = await reverseGeocode({lat: 1, lon: 1})
+
+  //     if (response[1].results && response[1].results.length) {
+  //       const addressInfo = response[1].results[0].formatted_address
+
+  //       console.log(addressInfo, 'address info')
+
+  //   this.setState({addressInfo})
+  //     }
+  //   }
+
   success(pos) {
-    console.log(pos)
-    var crd = pos.coords;
-  
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
+    console.log(pos, 'POS')
+    var crd = pos.coords
+
+    console.log('Your current position is:')
+    console.log(`Latitude : ${crd.latitude}`)
+    console.log(`Longitude: ${crd.longitude}`)
+    console.log(`More or less ${crd.accuracy} meters.`)
+
+    var something = reverseGeocode(pos.coords)
+    console.log(something, 'SOMETHING')
   }
-  
+
   error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+    console.warn(`ERROR(${err.code}): ${err.message}`)
   }
 
   render() {
