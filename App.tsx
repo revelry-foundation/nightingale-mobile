@@ -12,6 +12,7 @@ import AuthStack from './src/navigation/AuthStack'
 import AppStack from './src/navigation/AppStack'
 import AuthContainer from './src/containers/AuthContainer'
 import LocationInterface from './src/navigation/LocationStack'
+import LocationListener from './src/components/LocationListener'
 
 class AuthLoadingWithStore extends Component {
   static router = AuthStack.router
@@ -69,6 +70,7 @@ export default class App extends Component {
     return (
       <Provider inject={[authContainer]}>
         <StatusBar barStyle="dark-content" />
+        <LocationListener />
         <AppContainer />
       </Provider>
     )

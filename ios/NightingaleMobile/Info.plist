@@ -8,6 +8,10 @@
 	<string>$(API_CLIENT_SECRET)</string>
 	<key>API_URL</key>
 	<string>$(API_URL)</string>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.transistorsoft.fetch</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -51,6 +55,8 @@
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSMotionUsageDescription</key>
+	<string>For when the device moves</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Bold.ttf</string>
@@ -78,6 +84,7 @@
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
