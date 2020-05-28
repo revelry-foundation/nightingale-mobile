@@ -31,7 +31,7 @@ const AppStack = createDrawerNavigator(
       navigationOptions: {
         drawerIcon: ({focused, tintColor}) => (
           <Feather
-            name="locations"
+            name="map"
             size={drawerIconSize}
             color={focused ? tintColor : 'black'}
           />

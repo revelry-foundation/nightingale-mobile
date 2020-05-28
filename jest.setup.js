@@ -7,6 +7,7 @@ const mockKeyChain = {
   resetGenericPassword: jest.fn().mockResolvedValue(),
 }
 jest.mock('react-native-keychain', () => mockKeyChain)
+
 jest.mock('react-native-reanimated', () => {
   const mock = require('react-native-reanimated/mock')
   const getValue = (node) => {
@@ -19,3 +20,12 @@ jest.mock('react-native-reanimated', () => {
   mock.default.call = (a, b) => {}
   return mock
 })
+
+const mockGeo = {
+  onLocation: (_success, _error) => {},
+  onMotionChange: (_handler) => {},
+  onActivityChange: (_handler) => {},
+  onProviderChange: (_handler) => {},
+  ready: (_opts, _callback) => {},
+}
+jest.mock('react-native-background-geolocation', () => mockGeo)
