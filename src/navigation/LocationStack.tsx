@@ -1,75 +1,44 @@
 import React, {Component} from 'react'
-import {View, Text, TextInput, TouchableHighlight, Alert, NavigatorIOS} from 'react-native'
+import {View, AppState, Text, TextInput, TouchableHighlight, Alert, NavigatorIOS} from 'react-native'
 // import {Colors} from '../../styles'
 import LoginStyles from '../styles/LogInStyles'
-import Geolocation from '@react-native-community/geolocation'
 import SInfo from 'react-native-sensitive-info'
+import {start_tracking, initial_pos, localStorageOptions, watch_pos_options} from '../helpers/geolocation'
+import Geolocation from '@react-native-community/geolocation'
 
 const loginStyles = LoginStyles.createStyles()
 
 class LocationsInterface extends Component {
   state = {
-    locations: SInfo.getAllItems({
-      sharedPreferencesName: 'shared_preferences',
-      keychainService: 'app',
-    }).then(values => values)
-    .catch(null),
+    locations: []
   }
 
-  // so when a user opens the app, we start tracking position in background
-  // to do so, we:
-  // 1. set RN config
-  // 2. get current position
-  // 3. pass current position to 'SInfo'
-  // 4. use Geolocation.watchPosition to generate events. each success callback
-  // should be saved (possibly use triangulation to avoid adding places super close to
-  // previous locations)
-  // 5. 
-
-  // COMPONENT 1
-  // make another file thats more functional, geared towards tracking location 
-  // immediately and constantly updating
-
-  // COMPONENT 2
-  // another module/component to fire coords off to an api to make them friendly to users
-
-  // on location change event, we add to locations (see above state)
   componentDidMount() {
-    var options = {
-      // timeout: 5000,
-      // maximumAge: 0,
-      enableHighAccuracy: true,
-      distanceFilter: 75,
-      useSignificantChanges: true,
-    };
-    Geolocation.getCurrentPosition(this.success, this.error, options)
-  }
+    Geolocation.getCurrentPosition(
+      (position) => {
+         const initialPosition = JSON.stringify(position);
+         this.setState({ locations: [initialPosition] });
+      },
+      (error) => console.log(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+   );
 
-  success(pos) {
-    console.log(pos)
-    var crd = pos.coords;
-  
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-  }
-  
-  error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
+   Geolocation.watchPosition((position) => {
+    const lastPosition = JSON.stringify(position);
+    const locations = this.state.locations.concat([lastPosition])
+    this.setState({ locations: locations });
+  }, console.log, watch_pos_options)
+}
 
   render() {
+    const {locations} = this.state
     const {
       navigation: {navigate},
     } = this.props
-
     return (
       <View style={loginStyles.pageWrapper}>
         <View style={loginStyles.containerExpand}>
-          <View>
-            <Text style={loginStyles.h1}>Get Started</Text>
-          </View>
+                <Text>{JSON.stringify(locations)}</Text>
         </View>
       </View>
     )
