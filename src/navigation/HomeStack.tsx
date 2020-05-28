@@ -11,7 +11,7 @@ const HomeStack = createStackNavigator(
   {
     initialRouteName: 'Home',
     defaultNavigationOptions: ({navigation}) => ({
-      headerLeft: (
+      headerLeft: () => (
         <Feather
           style={{left: 10}}
           name="menu"
