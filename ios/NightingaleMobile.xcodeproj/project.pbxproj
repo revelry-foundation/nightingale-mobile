@@ -22,6 +22,7 @@
 		52540A79146A6918E460DA7C /* libPods-NightingaleMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 98FCC90C3FAB3D3AD5BA0E57 /* libPods-NightingaleMobileTests.a */; };
 		7FCDB87324F24588A992EF13 /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D65B9505E11F454EBCEE1250 /* Lato-BoldItalic.ttf */; };
 		844B2C0669AF895C5CB73FD0 /* libPods-NightingaleMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ED7BC42D8DA697D2FE8894 /* libPods-NightingaleMobile-tvOS.a */; };
+		96D8E50F2480613200666B41 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D8E50E2480613200666B41 /* RNBackgroundFetch+AppDelegate.m */; };
 		CC01FB6EEAC67C0B752165F3 /* libPods-NightingaleMobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 108CBBA452F19809747E03CF /* libPods-NightingaleMobile-tvOSTests.a */; };
 		D9DD9709EED34FA1AF44CC9F /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 926330B1C6034F7493EFABB9 /* Lato-Bold.ttf */; };
 		FCD53775385D4F95AC66D18F /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71BB4421654D4919BE569452 /* Lato-Italic.ttf */; };
@@ -76,6 +77,7 @@
 		7CC6D73B13C74F92ADBBF6DF /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		855A2C23582748E2B17E6779 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		926330B1C6034F7493EFABB9 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		96D8E50E2480613200666B41 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		98FCC90C3FAB3D3AD5BA0E57 /* libPods-NightingaleMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NightingaleMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0FA332BACED48C4A1DD88DD /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../assets/fonts/Lato-Regular.ttf"; sourceTree = "<group>"; };
 		A1FD412651E3488E959F4518 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				96D8E50E2480613200666B41 /* RNBackgroundFetch+AppDelegate.m */,
 				13B07FAE1A68108700A75B9A /* NightingaleMobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NightingaleMobileTests */,
@@ -349,6 +352,7 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = M2C9MHL336;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
@@ -358,16 +362,18 @@
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = M2C9MHL336;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = M2C9MHL336;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "nightingalemobile" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NightingaleMobile" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -657,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D8E50F2480613200666B41 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -1070,7 +1077,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "nightingalemobile" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "NightingaleMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

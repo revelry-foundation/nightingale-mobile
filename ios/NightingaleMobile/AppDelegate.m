@@ -11,7 +11,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
-// IMPORTANT:  Paste import ABOVE the DEBUG macro 
+// IMPORTANT:  Paste import ABOVE the DEBUG macro
 #import <TSBackgroundFetch/TSBackgroundFetch.h>
 
 @implementation AppDelegate
