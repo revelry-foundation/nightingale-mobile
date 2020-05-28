@@ -51,7 +51,7 @@ export default class LocationStorageContainer extends Container<
 
     await this.setState({
       isFetching: false,
-      locations: JSON.parse(locationsEncoded),
+      locations: JSON.parse(locationsEncoded || "[]"),
       locationsLoaded: true,
     })
     return this.state.locations
@@ -71,7 +71,6 @@ export default class LocationStorageContainer extends Container<
     if (!this.state.locationsLoaded) {
       await this.getLocations()
     }
-
     // normalize the date
     let {when} = locationParams
     if (when instanceof Date) {

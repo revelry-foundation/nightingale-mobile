@@ -68,7 +68,7 @@ class LocationListener extends Component<Props> {
   componentWillUnmount() {
     BackgroundGeolocation.removeListeners()
   }
-  onLocation(location: Location) {
+  onLocation = (location: Location) => {
     const {
       coords: {latitude, longitude},
       timestamp,

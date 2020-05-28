@@ -1,36 +1,50 @@
-import React, {Component} from 'react'
-import {Subscribe} from 'unstated'
-import {View, Text} from 'react-native'
+import React, { Component } from 'react'
+import { Subscribe } from 'unstated'
+import { Text, ScrollView, SafeAreaView } from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
-import LoginStyles from '../styles/LogInStyles'
-const loginStyles = LoginStyles.createStyles()
+
+interface Props {
+  isFetching: boolean
+  locations: Location[]
+}
 
 /**
  * View / edit the visited locations
  */
-class LocationsScreen extends Component {
+export class LocationsScreen extends Component<Props> {
   render() {
     return (
+      <SafeAreaView>
+        <ScrollView>
+          {this.props.isFetching && (
+            <Text>...loading locations...</Text>
+          )}
+          {this.props.locations.map((location: Location) => (
+            <Text key={location.when}>
+              {location.latitude}, {location.longitude} at {location.when}
+            </Text>
+          ))}
+        </ScrollView>
+      </SafeAreaView>
+    )
+  }
+}
+
+class LocationScreenWrapper extends Component {
+  render(){
+    return(
       <Subscribe to={[LocationStorageContainer]}>
         {locationStorage => (
-          <View style={loginStyles.pageWrapper}>
-            <View style={loginStyles.containerExpand}>
-              {locationStorage.state.isFetching && (
-                <Text>...loading locations...</Text>
-              )}
-              {locationStorage.state.locations.map((location: Location) => (
-                <Text>
-                  {location.latitude}, {location.longitude} at {location.when}
-                </Text>
-              ))}
-            </View>
-          </View>
+          <LocationsScreen
+            isFetching={locationStorage.state.isFetching}
+            locations={locationStorage.state.locations} 
+          />
         )}
       </Subscribe>
     )
   }
 }
 
-export default LocationsScreen
+export default LocationScreenWrapper
