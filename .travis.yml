@@ -34,9 +34,10 @@ jobs:
     - chmod 600 ./ci/certs_key
     - eval "$(ssh-agent -s)"
     - ssh-add ./ci/certs_key
-    - rm ./ci/certs_key
     script:
     - fastlane ios beta
+    after_script:
+    - rm ./ci/certs_key
 env:
   global:
   - secure: cgpi13Wa8js7P2eLr2VjPhRrlxlCZJSzPvu9LHR98kCRhms2wshVMWcnx32GyQ2pbvSkwS/90+VWS6pkz6GhhFt+lxndWprzt2yKAyywMihIsJ1Zz8q+jMX3fyq5Pkct/Ey5r7h0t6gb0w/tj93+ojcQcH+ZVT25ppbxYsb0adVyqtm+6V3jk1slpcTRCgaROS+fVSHsVwiuIgne5WXfdjhnV472LmFoCyLcK3VpDpwy32be3z8KMWk3jn2M4y0xFvuMkQDhLCMythDBNSnnuS6FKnK0GNIEs90LoARvbzwfGyrn2uvKfGjto044Ml2kukLKriMOMd5xrIrNChiTfBEBixGZ0MMXEUFW0y1fWz29wR1ohuWxN9kaYXi7tqggl1z2vAM0ipdIEpewPavqwFVFnQSvXz8+dcZHFbAQJ6QkovEoO79PBzZSzLhA8fMdRFkXl6tc3bl2FBot1Z+iisGtEdJoWvmDv1J7AqoUCOV1Okc4IQTFJB2KLUSLBwGI3LjXWwg5tkIlL6JAPATjVshMiMKrE8cItetJXfFXGsWlaMk2l2lSI2Iq4UQGqZwzG5mPcHYrlUHV1r624GBnwxH3lZIHOB3b1id61Vm6qyeqdpfUt1xArESmYUbOmvmkg+hcqtswNYrX2jXhX66bewABKibhAQdW/9gXz0gWFlU=
