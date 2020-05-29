@@ -66,3 +66,6 @@ buck-out/
 
 # Decrypted CI deploy key
 /ci/certs_key
+
+# api keys
+.env

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Subscribe} from 'unstated'
-import {Text, ScrollView, SafeAreaView, View} from 'react-native'
+import {Text, ScrollView, View} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
@@ -26,9 +26,7 @@ export class LocationsScreen extends Component<Props> {
           <View style={loginStyles.list}>
             {this.props.locations.map((location: Location) => (
               <View style={loginStyles.listItem} key={location.when}>
-                <Text style={loginStyles.bodyCopy}>
-                  You were at {location.latitude}, {location.longitude}
-                </Text>
+                <Text style={loginStyles.bodyCopy}>{location.address}</Text>
                 <Text style={loginStyles.bodyCopySmall}>
                   {formatDate(location.when)}
                 </Text>
