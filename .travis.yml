@@ -21,7 +21,6 @@ jobs:
     node_js:
     - node
     - lts/*
-    if: branch = master
     before_install:
     - git checkout master
     - git pull origin master
