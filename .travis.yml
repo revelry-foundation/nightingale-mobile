@@ -22,8 +22,6 @@ jobs:
     - node
     - lts/*
     before_install:
-    - git checkout master
-    - git pull origin master
     - git clean -d -f
     - gem install bundler:2.0.2
     - bundle install
