@@ -10,6 +10,8 @@ import AppStack from './src/navigation/AppStack'
 import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
 
+// console.log(process.env.REACT_APP_GOOGLE_PLACES_API_KEY, 'THE KEY')
+
 const AppNavigator = createSwitchNavigator(
   {
     App: AppStack,

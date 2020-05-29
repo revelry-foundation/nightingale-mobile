@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import { Subscribe } from 'unstated'
-import { Text, ScrollView, SafeAreaView } from 'react-native'
+import React, {Component} from 'react'
+import {Subscribe} from 'unstated'
+import {Text, ScrollView, SafeAreaView} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
+import {formatAddressInfo} from '../navigation/CoordinateTranslator'
 
 interface Props {
   isFetching: boolean
@@ -18,12 +19,10 @@ export class LocationsScreen extends Component<Props> {
     return (
       <SafeAreaView>
         <ScrollView>
-          {this.props.isFetching && (
-            <Text>...loading locations...</Text>
-          )}
+          {this.props.isFetching && <Text>...loading locations...</Text>}
           {this.props.locations.map((location: Location) => (
             <Text key={location.when}>
-              {location.latitude}, {location.longitude} at {location.when}
+              formatAddressInfo({location}) at {location.when}
             </Text>
           ))}
         </ScrollView>
@@ -33,13 +32,13 @@ export class LocationsScreen extends Component<Props> {
 }
 
 class LocationScreenWrapper extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <Subscribe to={[LocationStorageContainer]}>
         {locationStorage => (
           <LocationsScreen
             isFetching={locationStorage.state.isFetching}
-            locations={locationStorage.state.locations} 
+            locations={locationStorage.state.locations}
           />
         )}
       </Subscribe>

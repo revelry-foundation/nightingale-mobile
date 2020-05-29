@@ -20,10 +20,9 @@ async function doRequest(endpoint) {
   }
 }
 
-export function reverseGeocode(coords) {
-  const {latitude, longitude} = coords
+export function reverseGeocode(latitude, longitude) {
   console.log(latitude, longitude, 'THE COORDINATES')
-  const apiKey = 'AIzaSyCeNmcCL-Qu3PF47BZNzFhSV36tSzrSPEk'
+  const apiKey = 'a secret'
 
   if (latitude && longitude) {
     const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
@@ -35,16 +34,17 @@ export function reverseGeocode(coords) {
 }
 
 export async function formatAddressInfo(location) {
-    const parsedLocation = JSON.parse(location)
-    const response = await reverseGeocode(parsedLocation.coords)
+  const parsedLocation = JSON.parse(location)
+  const response = await reverseGeocode(
+    parsedLocation.coords.latitude,
+    parsedLocation.coords.longitude
+  )
 
-     if (response[1].results && response[1].results.length) {
-       const addressInfo = response[1].results[0].formatted_address
+  if (response[1].results && response[1].results.length) {
+    const addressInfo = response[1].results[0].formatted_address
 
-       return addressInfo
-     }
-
-  })
+    return addressInfo
+  }
 }
 
 // {"plus_code": {
