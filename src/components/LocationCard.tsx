@@ -22,12 +22,12 @@ export default function LocationCard({
     <View>
     <TouchableHighlight
       onPress={() => handleViewLocation(index, location)} // using index to delete or edit location
-    >   
+    >   <Text> {location.address} {formatDate(location.when)}</Text>
 
-<Text style={loginStyles.bodyCopy}>{location.address}</Text>
+{/* <Text style={loginStyles.bodyCopy}>{location.address}</Text>
 <Text style={loginStyles.bodyCopySmall}>
   {formatDate(location.when)}
-</Text>
+</Text> */}
     </TouchableHighlight>
   </View>
   )
