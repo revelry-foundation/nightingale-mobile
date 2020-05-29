@@ -27,8 +27,6 @@ export async function reverseGeocode(latitude, longitude) {
     if (Platform.OS === 'ios') {
       const apiKey = GOOGLE_PLACES_API_KEY
 
-      console.log(latitude, longitude, 'THE COORDINATES')
-
       if (latitude && longitude) {
         const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
         const result = await doRequest(endpoint)
