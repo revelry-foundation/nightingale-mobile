@@ -15,13 +15,14 @@ const HomeStack = createStackNavigator(
         <Feather
           style={{left: 10}}
           name="menu"
-          size={32}
+          size={28}
           color="white"
           onPress={() => navigation.openDrawer()}
         />
       ),
       headerStyle: {
         backgroundColor: Colors.brandPrimary,
+        shadowColor: 'transparent',
       },
     }),
   }

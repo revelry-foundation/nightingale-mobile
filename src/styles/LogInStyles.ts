@@ -7,6 +7,7 @@ import {
   Typography,
   Buttons,
   Forms,
+  Lists,
 } from '.'
 
 import {StyleSheet} from 'react-native'
@@ -18,35 +19,25 @@ const LoginStyles = {
   container: {
     ...Containers.container,
   },
-  containerExpand: {
-    ...Containers.containerExpand,
+  containerCollapsed: {
+    ...Containers.containerCollapsed,
   },
-  horizontalSpaceAround: {
-    ...Containers.horizontalSpaceAround,
+  section: {
+    ...Containers.section,
   },
-  logoContainer: {
-    borderBottomColor: Colors.lightGray,
-    borderBottomWidth: 1,
-    height: 100,
-    paddingTop: 40,
-  },
-  logo: {
-    height: 53,
-    marginLeft: Spacing.globalMargin,
-    width: 312,
-    paddingTop: 147.5,
-  },
-  primaryGradientBackground: {
-    flex: 1,
-    height: 100,
-  },
-  // CONTENT
+  // TYPOGRAPHY
   h1: {
     ...Headers.h1,
   },
-  content: {
-    marginBottom: Spacing.globalMarginLarge,
-    textAlign: 'center',
+  h2: {
+    ...Headers.h2,
+  },
+  bodyCopy: {
+    ...Typography.bodyCopy,
+  },
+  bodyCopySmall: {
+    ...Typography.bodyCopySmall,
+    color: Colors.gray,
   },
   // BUTTONS
   buttonContainer: {
@@ -73,6 +64,13 @@ const LoginStyles = {
     ...Buttons.linkWhiteText,
     fontSize: Typography.bodyFontSizeLarge,
     fontWeight: Typography.fontWeightBold,
+  },
+  // LISTS
+  list: {
+    ...Lists.list,
+  },
+  listItem: {
+    ...Lists.listItem,
   },
   // FORMS
   inputContainer: {
