@@ -1,45 +1,45 @@
 jobs:
   include:
-    - stage: tests
-      os: osx
-      osx_image: xcode11.1
-      language: node_js
-      node_js: lts/*
-      name: Unit Tests
-      cache:
-        directories:
-          - "~/.npm"
-      before_script:
-        - npm install -g npm@latest
-      script:
-        - npm ci
-        - npx jest --ci --passWithNoTests
-    - stage: deploy-staging-ios
-      os: osx
-      osx_image: xcode11.5
-      language: node_js
-      node_js:
-        - node
-        - lts/*
-      if: branch = master
-      before_install:
-        - git checkout master
-        - git pull origin master
-        - git clean -d -f
-        - gem install bundler:2.0.2
-        - bundle install
-      before_script:
-        # set up SSH for pulling the private signing certs
-        - openssl aes-256-cbc -K $encrypted_db4416ddba70_key -iv $encrypted_db4416ddba70_iv -in ./ci/certs_key.enc -out ./ci/certs_key -d
-        - chmod 600 ./ci/certs_key
-        - eval "$(ssh-agent -s)"
-        - ssh-add ./ci/certs_key
-        - echo "GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY" > .env
-      script:
-        - fastlane ios beta
-      after_script:
-        - rm ./ci/certs_key
+  - stage: tests
+    os: osx
+    osx_image: xcode11.1
+    language: node_js
+    node_js: lts/*
+    name: Unit Tests
+    cache:
+      directories:
+      - "~/.npm"
+    before_script:
+    - npm install -g npm@latest
+    script:
+    - npm ci
+    - npx jest --ci --passWithNoTests
+  - stage: deploy-staging-ios
+    os: osx
+    osx_image: xcode11.5
+    language: node_js
+    node_js:
+    - node
+    - lts/*
+    if: branch = master
+    before_install:
+    - git checkout master
+    - git pull origin master
+    - git clean -d -f
+    - gem install bundler:2.0.2
+    - bundle install
+    before_script:
+    # set up SSH for pulling the private signing certs
+    - openssl aes-256-cbc -K $encrypted_db4416ddba70_key -iv $encrypted_db4416ddba70_iv -in ./ci/certs_key.enc -out ./ci/certs_key -d
+    - chmod 600 ./ci/certs_key
+    - eval "$(ssh-agent -s)"
+    - ssh-add ./ci/certs_key
+    - echo "GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY" > .env
+    script:
+    - fastlane ios beta
+    after_script:
+    - rm ./ci/certs_key
 env:
   global:
-    - secure: cgpi13Wa8js7P2eLr2VjPhRrlxlCZJSzPvu9LHR98kCRhms2wshVMWcnx32GyQ2pbvSkwS/90+VWS6pkz6GhhFt+lxndWprzt2yKAyywMihIsJ1Zz8q+jMX3fyq5Pkct/Ey5r7h0t6gb0w/tj93+ojcQcH+ZVT25ppbxYsb0adVyqtm+6V3jk1slpcTRCgaROS+fVSHsVwiuIgne5WXfdjhnV472LmFoCyLcK3VpDpwy32be3z8KMWk3jn2M4y0xFvuMkQDhLCMythDBNSnnuS6FKnK0GNIEs90LoARvbzwfGyrn2uvKfGjto044Ml2kukLKriMOMd5xrIrNChiTfBEBixGZ0MMXEUFW0y1fWz29wR1ohuWxN9kaYXi7tqggl1z2vAM0ipdIEpewPavqwFVFnQSvXz8+dcZHFbAQJ6QkovEoO79PBzZSzLhA8fMdRFkXl6tc3bl2FBot1Z+iisGtEdJoWvmDv1J7AqoUCOV1Okc4IQTFJB2KLUSLBwGI3LjXWwg5tkIlL6JAPATjVshMiMKrE8cItetJXfFXGsWlaMk2l2lSI2Iq4UQGqZwzG5mPcHYrlUHV1r624GBnwxH3lZIHOB3b1id61Vm6qyeqdpfUt1xArESmYUbOmvmkg+hcqtswNYrX2jXhX66bewABKibhAQdW/9gXz0gWFlU=
-    - secure: WVJl5iuzF1U7romA2VIfcemkcDVj+6L4rHSR/mxzHaQS0cSDa6QDnxlhCUUJeztwcTsqOXrNjtL9sVYkEdWV26KhT/EabMzPYy7Dg7lIS9vep5sgjdXcQwGWwckUJDcdfF/pCbToMsOvghKzg22lSX4+zOtVexNA2+ygXpMow+nKeGZApIKndZiyBCDEbwdq1Bs/0kAR2OH18NcPO35Q5H4JEfrSoioGSB6GYVqcDig+7TuYZ5OqrKlZHQS7p72gBoj67fLZXmfBoZYdZHhBskchJvAuKjCa/HAK6Kxw9LbqsarK5mg6qCDf3a3mhnltGgomCjmtSHVokRtdShzQz1SpZuCti/iKB5TUKaQR3QUQEdxBICh/jp/rxOquiyvczcUHQMRvM0JC3YdToDkfQhLOyC8N+oCt7SqjEiDrBHcX5sRAgZiIpw+RqEoNO433ji5ZGUF0T5+qfiCNnqU4esmkEIEX/kYDZ+uyC79kjoEKFfmGaP89ygItzhfXebn1W1XuNZz7ZuRLTLyHDKzSVIAhw/Yocu+07VjBRNjg31icBkb29/yStbJVZH85JkNNJ6g3VyezDePcM4FF7fg5P79aRXrVJyzhI1nuMQoGflQyLxpNngDC0ojkjl+pmZsLiM9fESJPSvzNYlDziYHXWUoFxMyLD15M1Nbext1ioTQ=
+  - secure: cgpi13Wa8js7P2eLr2VjPhRrlxlCZJSzPvu9LHR98kCRhms2wshVMWcnx32GyQ2pbvSkwS/90+VWS6pkz6GhhFt+lxndWprzt2yKAyywMihIsJ1Zz8q+jMX3fyq5Pkct/Ey5r7h0t6gb0w/tj93+ojcQcH+ZVT25ppbxYsb0adVyqtm+6V3jk1slpcTRCgaROS+fVSHsVwiuIgne5WXfdjhnV472LmFoCyLcK3VpDpwy32be3z8KMWk3jn2M4y0xFvuMkQDhLCMythDBNSnnuS6FKnK0GNIEs90LoARvbzwfGyrn2uvKfGjto044Ml2kukLKriMOMd5xrIrNChiTfBEBixGZ0MMXEUFW0y1fWz29wR1ohuWxN9kaYXi7tqggl1z2vAM0ipdIEpewPavqwFVFnQSvXz8+dcZHFbAQJ6QkovEoO79PBzZSzLhA8fMdRFkXl6tc3bl2FBot1Z+iisGtEdJoWvmDv1J7AqoUCOV1Okc4IQTFJB2KLUSLBwGI3LjXWwg5tkIlL6JAPATjVshMiMKrE8cItetJXfFXGsWlaMk2l2lSI2Iq4UQGqZwzG5mPcHYrlUHV1r624GBnwxH3lZIHOB3b1id61Vm6qyeqdpfUt1xArESmYUbOmvmkg+hcqtswNYrX2jXhX66bewABKibhAQdW/9gXz0gWFlU=
+  - secure: WVJl5iuzF1U7romA2VIfcemkcDVj+6L4rHSR/mxzHaQS0cSDa6QDnxlhCUUJeztwcTsqOXrNjtL9sVYkEdWV26KhT/EabMzPYy7Dg7lIS9vep5sgjdXcQwGWwckUJDcdfF/pCbToMsOvghKzg22lSX4+zOtVexNA2+ygXpMow+nKeGZApIKndZiyBCDEbwdq1Bs/0kAR2OH18NcPO35Q5H4JEfrSoioGSB6GYVqcDig+7TuYZ5OqrKlZHQS7p72gBoj67fLZXmfBoZYdZHhBskchJvAuKjCa/HAK6Kxw9LbqsarK5mg6qCDf3a3mhnltGgomCjmtSHVokRtdShzQz1SpZuCti/iKB5TUKaQR3QUQEdxBICh/jp/rxOquiyvczcUHQMRvM0JC3YdToDkfQhLOyC8N+oCt7SqjEiDrBHcX5sRAgZiIpw+RqEoNO433ji5ZGUF0T5+qfiCNnqU4esmkEIEX/kYDZ+uyC79kjoEKFfmGaP89ygItzhfXebn1W1XuNZz7ZuRLTLyHDKzSVIAhw/Yocu+07VjBRNjg31icBkb29/yStbJVZH85JkNNJ6g3VyezDePcM4FF7fg5P79aRXrVJyzhI1nuMQoGflQyLxpNngDC0ojkjl+pmZsLiM9fESJPSvzNYlDziYHXWUoFxMyLD15M1Nbext1ioTQ=
