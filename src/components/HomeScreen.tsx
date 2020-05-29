@@ -3,7 +3,10 @@ import {ScrollView, SafeAreaView, RefreshControl, Text} from 'react-native'
 import {NavigationEvents} from 'react-navigation'
 import Feather from 'react-native-vector-icons/Feather'
 
-class HomeScreen extends Component {
+import {HomeStackProps} from '../navigation/HomeStack'
+import CovidStatusIndicator from './CovidStatusIndicator'
+
+class HomeScreen extends Component<HomeStackProps> {
   static navigationOptions = {
     drawerIcon: <Feather name="home" size={16} color="black" />,
   }
@@ -26,7 +29,9 @@ class HomeScreen extends Component {
               refreshing={this.state.refreshing}
               onRefresh={this.onRefresh}
             />
-          }></ScrollView>
+          }>
+          <CovidStatusIndicator navigation={this.props.navigation} />
+        </ScrollView>
       </SafeAreaView>
     )
   }

@@ -52,6 +52,10 @@ const LoginStyles = {
     marginBottom: Spacing.globalMarginLarge,
     textAlign: 'center',
   },
+  contentLeft: {
+    marginBottom: Spacing.globalMarginLarge,
+    textAlign: 'left',
+  },
   // BUTTONS
   buttonContainer: {
     ...Buttons.container,

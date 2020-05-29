@@ -16,11 +16,11 @@ export interface LocationParams {
 export interface LocationsState {
   isFetching: boolean
   locations: Location[]
-  locationsLoaded: boolean
 }
 
 const LOCATIONS_KEY = 'nightingale_locations'
 const SINFO_OPTIONS = {}
+const RETENTION_MS = 1000 * 60 * 60 * 24 * 14
 
 /**
  * An unstated container for managing the secure local storage of
@@ -34,15 +34,11 @@ export default class LocationStorageContainer extends Container<
     this.state = {
       isFetching: false,
       locations: [],
-      locationsLoaded: false,
     }
+    this.init()
   }
 
-  getLocations = async (force = false) => {
-    if (this.state.locationsLoaded && !force) {
-      return this.state.locations
-    }
-
+  init = async () => {
     await this.setState({
       isFetching: true,
     })
@@ -51,26 +47,31 @@ export default class LocationStorageContainer extends Container<
 
     await this.setState({
       isFetching: false,
-      locations: JSON.parse(locationsEncoded || "[]"),
-      locationsLoaded: true,
+      locations: JSON.parse(locationsEncoded || '[]'),
     })
-    return this.state.locations
+
+    return this.pruneLocations()
   }
 
   pruneLocations = async () => {
-    if (!this.state.locationsLoaded) {
-      await this.getLocations()
+    const {locations} = this.state
+    const timestampNow = new Date().getTime()
+    const isExpired = (sDate: string) =>
+      timestampNow - new Date(sDate).getTime() > RETENTION_MS
+
+    let index = 0
+    while (locations.length > index && isExpired(locations[index].when)) {
+      index++
     }
 
-    // TODO: prune the pings that happened more than 2 weeks ago
+    await this.setState({
+      locations: locations.slice(index),
+    })
 
     return this.saveLocations()
   }
 
   recordLocation = async (locationParams: LocationParams) => {
-    if (!this.state.locationsLoaded) {
-      await this.getLocations()
-    }
     // normalize the date
     let {when} = locationParams
     if (when instanceof Date) {
