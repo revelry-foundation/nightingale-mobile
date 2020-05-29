@@ -22,8 +22,7 @@ export class LocationsScreen extends Component<Props> {
           {this.props.isFetching && <Text>...loading locations...</Text>}
           {this.props.locations.map((location: Location) => (
             <Text key={location.when}>
-              {formatAddressInfo(location.latitude, location.longitude)}
-              {location.latitude}, {location.longitude} at {location.when}
+              {location.address} at {location.when}
             </Text>
           ))}
         </ScrollView>
