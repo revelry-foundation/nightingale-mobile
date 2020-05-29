@@ -19,16 +19,16 @@ export default function LocationCard({
   handleViewLocation
 }) {
   return (
-    <View>
     <TouchableHighlight
       onPress={() => handleViewLocation(index, location)} // using index to delete or edit location
-    >   <Text> {location.address} {formatDate(location.when)}</Text>
-
-{/* <Text style={loginStyles.bodyCopy}>{location.address}</Text>
+    >
+      <View>
+<Text style={loginStyles.bodyCopy}>{location.address}</Text>
 <Text style={loginStyles.bodyCopySmall}>
   {formatDate(location.when)}
-</Text> */}
+</Text> 
+
+      </View>
     </TouchableHighlight>
-  </View>
   )
 }
