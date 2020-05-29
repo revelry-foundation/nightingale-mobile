@@ -15,9 +15,6 @@ export default class LocationScreen extends Component{
 
     render() {
         const location = this.props.navigation.getParam("location")
-        const index = this.props.navigation.getParam("index")
-        const locationStorage = this.props.locationStorage
-        console.log(locationStorage)
         return(
             <View>
                 <TouchableHighlight onPress={this.handleBackToLocations}><Text>Back</Text></TouchableHighlight>
