@@ -8,6 +8,7 @@ import {Typography} from '../styles'
 import Drawer from '../components/Drawer'
 import HomeStack from './HomeStack'
 import SettingsStack from './SettingsStack'
+import LocationsInterface from './LocationStack'
 
 const drawerIconSize = 20
 
@@ -19,6 +20,18 @@ const AppStack = createDrawerNavigator(
         drawerIcon: ({focused, tintColor}) => (
           <Feather
             name="home"
+            size={drawerIconSize}
+            color={focused ? tintColor : 'black'}
+          />
+        ),
+      },
+    },
+    Locations: {
+      screen: LocationsInterface,
+      navigationOptions: {
+        drawerIcon: ({focused, tintColor}) => (
+          <Feather
+            name="map"
             size={drawerIconSize}
             color={focused ? tintColor : 'black'}
           />

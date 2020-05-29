@@ -153,8 +153,6 @@ android {
     buildTypes {
         debug {
             buildConfigField "String", "API_URL", '"http://localhost:4000/api"'
-            buildConfigField "String", "API_CLIENT_ID", ''
-            buildConfigField "String", "API_CLIENT_SECRET", ''
             signingConfig signingConfigs.debug
         }
         release {
@@ -183,6 +181,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-sensitive-info')
+    implementation project(':@react-native-community_geolocation')
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

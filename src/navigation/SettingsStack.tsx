@@ -1,20 +1,13 @@
 import React from 'react'
 
 import {createStackNavigator} from 'react-navigation-stack'
-import BusyButton from '../components/BusyButton'
 import Feather from 'react-native-vector-icons/Feather'
-import {Text, ScrollView, View, SafeAreaView, AsyncStorage} from 'react-native'
+import {ScrollView, View, SafeAreaView} from 'react-native'
 import StyleGuide from '../components/StyleGuide'
 import {Colors} from '../styles'
 import LogInStyles from '../styles/LogInStyles'
-import {resetApiToken} from '../helpers/credential_storage'
 
 const loginStyles = LogInStyles.createStyles()
-
-const _signOutAsync = async props => {
-  await resetApiToken()
-  props.navigation.navigate('Auth')
-}
 
 const Settings = props => (
   <ScrollView>
@@ -22,14 +15,7 @@ const Settings = props => (
       style={{flex: 1}}
       forceInset={{top: 'always', horizontal: 'never'}}>
       <View style={loginStyles.container}>
-        <View style={loginStyles.buttonContainer}>
-          <BusyButton
-            style={loginStyles.button}
-            underlayColor={Colors.buttonPrimaryBkgdActive}
-            onPress={() => _signOutAsync(props)}>
-            <Text style={loginStyles.buttonText}>Logout</Text>
-          </BusyButton>
-        </View>
+        <View style={loginStyles.buttonContainer} />
       </View>
     </SafeAreaView>
   </ScrollView>
@@ -44,7 +30,7 @@ const SettingsStack = createStackNavigator(
     initialRouteName: 'Settings',
     defaultNavigationOptions: ({navigation}) => ({
       title: 'Settings',
-      headerLeft: (
+      headerLeft: () => (
         <Feather
           style={{left: 10}}
           name="menu"
