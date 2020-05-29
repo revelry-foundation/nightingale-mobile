@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
 import {Subscribe} from 'unstated'
-import {Text, ScrollView, SafeAreaView} from 'react-native'
+import {Text, ScrollView, SafeAreaView, View} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
 import {formatAddressInfo} from '../navigation/CoordinateTranslator'
+import LoginStyles from '../styles/LogInStyles'
+
+const loginStyles = LoginStyles.createStyles()
 
 interface Props {
   isFetching: boolean
@@ -17,16 +20,23 @@ interface Props {
 export class LocationsScreen extends Component<Props> {
   render() {
     return (
-      <SafeAreaView>
-        <ScrollView>
+      <View style={loginStyles.pageWrapper}>
+        <ScrollView style={loginStyles.containerCollapsed}>
           {this.props.isFetching && <Text>...loading locations...</Text>}
-          {this.props.locations.map((location: Location) => (
-            <Text key={location.when}>
-              {location.address} at {location.when}
-            </Text>
-          ))}
+          <View style={loginStyles.list}>
+            {this.props.locations.map((location: Location) => (
+              <View style={loginStyles.listItem}>
+                <Text key={location.address} style={loginStyles.bodyCopy}>
+                  {location.address} at
+                </Text>
+                <Text key={location.when} style={loginStyles.bodyCopySmall}>
+                  {location.when}
+                </Text>
+              </View>
+            ))}
+          </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 }
