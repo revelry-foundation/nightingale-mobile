@@ -34,9 +34,7 @@ export default class CovidStatusContainer extends Container<CovidStatusState> {
       isFetching: true,
     })
 
-    // TODO: remove me
-    const statusEncoded = null
-    // const statusEncoded = await SInfo.getItem(STATUS_KEY, SINFO_OPTIONS)
+    const statusEncoded = await SInfo.getItem(STATUS_KEY, SINFO_OPTIONS)
     const status = JSON.parse(statusEncoded || '{}')
     Object.keys(status).forEach(key => {
       if (status[key]) {

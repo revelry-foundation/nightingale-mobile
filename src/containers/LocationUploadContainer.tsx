@@ -9,8 +9,8 @@ export interface LocationUploadState {
 }
 
 /**
- * An unstated container for managing the secure local storage of
- * the user's covid status
+ * An unstated container for managing the API request
+ * to upload a user's COVID-positive locations to the server
  */
 export default class LocationUploadContainer extends Container<
   LocationUploadState
@@ -31,7 +31,6 @@ export default class LocationUploadContainer extends Container<
           const {latitude: lat, longitude: lng, when} = location
           const body = {lat, lng, when, app_version: version}
           const url = apiUrl('/api/v1/submit_positive_location')
-          console.log(url)
           return post(url, undefined, body)
         })
       )
