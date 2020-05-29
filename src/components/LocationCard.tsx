@@ -17,7 +17,7 @@ export default function LocationCard({
   return (
     <View>
     <TouchableHighlight
-      onPress={() => handleViewLocation(index, location)} // using index to delete, in deleteLocation
+      onPress={() => handleViewLocation(index, location)} // using index to delete or edit location
     >   
     <Text>
       {location.latitude}, {location.longitude} at {location.when}

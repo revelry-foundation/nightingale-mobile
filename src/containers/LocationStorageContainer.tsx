@@ -88,11 +88,15 @@ export default class LocationStorageContainer extends Container<
     return this.saveLocations()
   }
 
-  deleteLocation = async (index: number) => {
+  deleteOrEditLocation = async (index: number, updatedLocation: object) => {
     // get locations, remove the location by index
     let locations = await SInfo.getItem(LOCATIONS_KEY, SINFO_OPTIONS)
     locations = JSON.parse(locations)
-    locations.splice(index, 1) 
+    if(updatedLocation) {
+      locations.splice(index, 1, updatedLocation) // locationUpdate needs to be an object with {lat, long, when}
+    } else {
+      locations.splice(index, 1) 
+    }
 
     await SInfo.deleteItem(LOCATIONS_KEY, SINFO_OPTIONS)
     await SInfo.setItem(LOCATIONS_KEY, JSON.stringify(locations), SINFO_OPTIONS)

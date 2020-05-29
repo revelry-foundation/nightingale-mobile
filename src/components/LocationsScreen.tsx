@@ -19,9 +19,9 @@ export class LocationsScreen extends Component<Props> {
   handleViewLocation = (index: number, location: object) => {
     const {
       navigation: {navigate},
-      locationStorage: {deleteLocation}
+      locationStorage: {deleteOrEditLocation}
     } = this.props
-    navigate('Location', {index, location, deleteLocation})
+    navigate('Location', {index, location, deleteOrEditLocation})
   }
 
   render() {
