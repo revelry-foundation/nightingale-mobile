@@ -16,7 +16,6 @@ export const h1 = {
   fontSize: h1Size,
   marginBottom: Spacing.globalMargin,
   marginTop: Spacing.globalMarginSmaller,
-  textAlign: 'center',
 }
 export const h2 = {
   backgroundColor: 'transparent',
@@ -24,7 +23,6 @@ export const h2 = {
   fontFamily: Fonts.headerFont,
   fontSize: h2Size,
   marginBottom: Spacing.globalMargin,
-  textAlign: 'center',
 }
 export const h3 = {
   color: Colors.headerColor,
