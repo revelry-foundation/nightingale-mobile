@@ -1,9 +1,11 @@
 import {Container} from 'unstated'
 import SInfo from 'react-native-sensitive-info'
+import {formatAddressInfo} from '../navigation/CoordinateTranslator'
 
 export interface Location {
   latitude: number
   longitude: number
+  address: string
   when: string // ISO 8601 in UTC (ends in Z)
 }
 
@@ -37,6 +39,19 @@ export default class LocationStorageContainer extends Container<
       locationsLoaded: false,
     }
   }
+  async parseLocations(locations) {
+    locations = JSON.parse(locations || '[]')
+
+    return Promise.all(
+      locations.map(async location => {
+        const address = await formatAddressInfo(
+          location.latitude,
+          location.longitude
+        )
+        return {...location, address}
+      })
+    )
+  }
 
   getLocations = async (force = false) => {
     if (this.state.locationsLoaded && !force) {
@@ -48,10 +63,11 @@ export default class LocationStorageContainer extends Container<
     })
 
     const locationsEncoded = await SInfo.getItem(LOCATIONS_KEY, SINFO_OPTIONS)
+    const locations = await this.parseLocations(locationsEncoded)
 
     await this.setState({
       isFetching: false,
-      locations: JSON.parse(locationsEncoded || "[]"),
+      locations: locations,
       locationsLoaded: true,
     })
     return this.state.locations
