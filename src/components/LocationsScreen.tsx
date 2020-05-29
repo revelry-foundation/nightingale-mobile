@@ -5,7 +5,7 @@ import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
 import LoginStyles from '../styles/LogInStyles'
-import {formatDate} from '../helpers/dates'
+import {formatDateTime} from '../helpers/dates'
 
 const loginStyles = LoginStyles.createStyles()
 
@@ -28,7 +28,7 @@ export class LocationsScreen extends Component<Props> {
               <View style={loginStyles.listItem} key={location.when}>
                 <Text style={loginStyles.bodyCopy}>{location.address}</Text>
                 <Text style={loginStyles.bodyCopySmall}>
-                  {formatDate(location.when)}
+                  {formatDateTime(location.when)}
                 </Text>
               </View>
             ))}
