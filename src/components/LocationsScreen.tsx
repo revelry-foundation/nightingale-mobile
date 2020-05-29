@@ -20,14 +20,14 @@ interface Props {
 export class LocationsScreen extends Component<Props> {
   render() {
     return (
-      <View style={loginStyles.pageWrapper}>
+      <SafeAreaView style={loginStyles.pageWrapper}>
         <ScrollView style={loginStyles.containerCollapsed}>
           {this.props.isFetching && <Text>...loading locations...</Text>}
           <View style={loginStyles.list}>
             {this.props.locations.map((location: Location) => (
               <View style={loginStyles.listItem}>
                 <Text key={location.address} style={loginStyles.bodyCopy}>
-                  {location.address} at
+                  {location.address}
                 </Text>
                 <Text key={location.when} style={loginStyles.bodyCopySmall}>
                   {location.when}
@@ -36,7 +36,7 @@ export class LocationsScreen extends Component<Props> {
             ))}
           </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     )
   }
 }
