@@ -3,10 +3,12 @@ import {Colors} from '../styles'
 import {createStackNavigator} from 'react-navigation-stack'
 import Feather from 'react-native-vector-icons/Feather'
 import LocationsScreen from '../components/LocationsScreen'
+import LocationScreen from '../components/LocationScreen'
 
 const LocationsStack = createStackNavigator(
   {
     Locations: LocationsScreen,
+    Location: LocationScreen
   },
   {
     initialRouteName: 'Locations',

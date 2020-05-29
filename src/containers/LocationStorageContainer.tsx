@@ -88,6 +88,23 @@ export default class LocationStorageContainer extends Container<
     return this.saveLocations()
   }
 
+  deleteLocation = async (index: number) => {
+    // // get locations, remove the location by index
+    // let locations = await SInfo.getItem(LOCATIONS_KEY, SINFO_OPTIONS)
+    //     locations.slice(index, 1)
+
+    // await SInfo.deleteItem(LOCATIONS_KEY, SINFO_OPTIONS)
+    // await SInfo.setItem(LOCATIONS_KEY, locations, SINFO_OPTIONS)
+
+    // await this.setState({
+    //   isFetching: false,
+    //   locations: JSON.parse(locations || "[]"),
+    //   locationsLoaded: true,
+    // })
+    // return this.state.locations
+    console.log(index, 'SHOULD BE DELETED')
+  }
+
   private saveLocations = () => {
     const locationsEncoded = JSON.stringify(this.state.locations)
     return SInfo.setItem(LOCATIONS_KEY, locationsEncoded, SINFO_OPTIONS)
