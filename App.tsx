@@ -2,11 +2,13 @@
  *
  * @format
  */
-
 import React, {Component} from 'react'
+import {Provider} from 'unstated'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {StatusBar} from 'react-native'
 import AppStack from './src/navigation/AppStack'
+import LocationListener from './src/components/LocationListener'
+import LocationStorageContainer from './src/containers/LocationStorageContainer'
 
 const AppNavigator = createSwitchNavigator(
   {
@@ -26,11 +28,14 @@ export default class App extends Component {
     }
   }
   render() {
+    const locationStorage = new LocationStorageContainer(this.props)
+
     return (
-      <React.Fragment>
+      <Provider inject={[locationStorage]}>
         <StatusBar barStyle="dark-content" />
         <AppContainer />
-      </React.Fragment>
+        <LocationListener locationStorage={locationStorage} />
+      </Provider>
     )
   }
 }
