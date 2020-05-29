@@ -24,6 +24,10 @@ const LocationsStack = createStackNavigator(
       ),
       headerStyle: {
         backgroundColor: Colors.brandPrimary,
+        shadowColor: 'transparent',
+      },
+      headerTitleStyle: {
+        color: 'white',
       },
     }),
   }

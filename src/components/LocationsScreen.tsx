@@ -1,11 +1,13 @@
-import React, { Component } from 'react'
-import { Subscribe } from 'unstated'
-import { Text, ScrollView, SafeAreaView } from 'react-native'
+import React, {Component} from 'react'
+import {Subscribe} from 'unstated'
+import {Text, ScrollView, View} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
 import LocationCard from './LocationCard'
-import LocationStack from '../navigation/LocationStack'
+import LoginStyles from '../styles/LogInStyles'
+
+const loginStyles = LoginStyles.createStyles()
 
 interface Props {
   isFetching: boolean
@@ -26,23 +28,25 @@ export class LocationsScreen extends Component<Props> {
 
   render() {
     return (
-      <SafeAreaView>
-        <ScrollView>
-          {this.props.isFetching && (
-            <Text>...loading locations...</Text>
-          )}
-          {this.props.locations.map((location: Location, index) => (
-            <LocationCard key={location.when} location={location} index={index} handleViewLocation={this.handleViewLocation}></LocationCard>
-          ))}
+      <View style={loginStyles.pageWrapper}>
+        <ScrollView style={loginStyles.containerCollapsed}>
+          {this.props.isFetching && <Text>...loading locations...</Text>}
+          <View style={loginStyles.list}>
+            {this.props.locations.map((location: Location, index: number) => (
+              <View style={loginStyles.listItem} key={location.when}>
+                <LocationCard key={location.when} location={location} index={index} handleViewLocation={this.handleViewLocation}></LocationCard>
+              </View>
+            ))}
+          </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 }
 
 class LocationScreenWrapper extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <Subscribe to={[LocationStorageContainer]}>
         {locationStorage => (
           <LocationsScreen

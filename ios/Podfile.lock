@@ -294,6 +294,8 @@ PODS:
     - React
   - RNCMaskedView (0.1.5):
     - React
+  - RNConfigReader (1.0.0):
+    - React
   - RNFBAnalytics (6.2.0):
     - Firebase/Core (~> 6.13.0)
     - React
@@ -346,6 +348,7 @@ DEPENDENCIES:
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
   - RNBackgroundGeolocation (from `../node_modules/react-native-background-geolocation`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNConfigReader (from `../node_modules/react-native-config-reader`)
   - "RNFBAnalytics (from `../node_modules/@react-native-firebase/analytics`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
@@ -430,6 +433,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-background-geolocation"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNConfigReader:
+    :path: "../node_modules/react-native-config-reader"
   RNFBAnalytics:
     :path: "../node_modules/@react-native-firebase/analytics"
   RNFBApp:
@@ -475,7 +480,7 @@ SPEC CHECKSUMS:
   React-jsi: ca921f4041505f9d5197139b2d09eeb020bb12e8
   React-jsiexecutor: 8dfb73b987afa9324e4009bdce62a18ce23d983c
   React-jsinspector: d15478d0a8ada19864aa4d1cc1c697b41b3fa92f
-  react-native-safe-area-context: 042dfc9d4db17196841df962ba9497f6e7a5bd02
+  react-native-safe-area-context: 52342d2d80ea8faadd0ffa76d83b6051f20c5329
   react-native-sensitive-info: 4629b223484a08225c3eb088ff3f91b03097b5e5
   React-RCTActionSheet: 7369b7c85f99b6299491333affd9f01f5a130c22
   React-RCTAnimation: d07be15b2bd1d06d89417eb0343f98ffd2b099a7
@@ -490,6 +495,7 @@ SPEC CHECKSUMS:
   RNBackgroundFetch: b74694028396d1c58574bff4ad27ed72acd44919
   RNBackgroundGeolocation: ef0b86ccc91ca9ea3e775585f60fe151601d3d50
   RNCMaskedView: c8b53164b85ecf94c9a44d67082df0f03c1f74cc
+  RNConfigReader: 396da6a6444182a76e8ae0930b9436c7575045cb
   RNFBAnalytics: 57dc0bfad4e40f68779757653676699072651218
   RNFBApp: 5b215aacc09105a1761de31b9a0eb2abcce06253
   RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
@@ -501,4 +507,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 3197be5d8c69df4471b766cd23606def1298dd6d
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.8.4

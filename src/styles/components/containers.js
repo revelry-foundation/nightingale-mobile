@@ -4,28 +4,35 @@ export const fullWidth = Dimensions.get('window').width
 
 import * as Colors from '../colors'
 import * as Spacing from '../spacing'
+import * as Global from '../global'
 
 export const pageWrapper = {
-  backgroundColor: Colors.lightestGray,
+  backgroundColor: Colors.brandPrimary,
   flex: 1,
   width: fullWidth,
 }
 export const base = {
-  backgroundColor: Colors.lightestGray,
-  paddingHorizontal: Spacing.globalPadding,
-  paddingVertical: Spacing.globalPaddingLarge,
-  width: fullWidth,
+  backgroundColor: Colors.white,
+  borderRadius: Global.globalRadiusLarge,
+  flex: 1,
+  marginTop: Spacing.globalMargin,
+  padding: Spacing.globalPadding,
 }
 export const container = {
   ...base,
 }
+export const containerCollapsed = {
+  ...base,
+  paddingHorizontal: 0,
+}
 export const containerExpand = {
   ...base,
-  flex: 1,
+}
+export const section = {
+  paddingHorizontal: Spacing.globalPadding,
 }
 export const verticalSpaceBetween = {
   ...base,
-  flex: 1,
   flexDirection: 'column',
   height: fullHeight,
   justifyContent: 'space-between',

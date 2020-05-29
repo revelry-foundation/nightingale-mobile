@@ -769,7 +769,7 @@
 			buildSettings = {
 				API_CLIENT_ID = "";
 				API_CLIENT_SECRET = "";
-				API_URL = "http://localhost:4000/api";
+				API_URL = "http://localhost:4000";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -796,7 +796,7 @@
 			buildSettings = {
 				API_CLIENT_ID = "";
 				API_CLIENT_SECRET = "";
-				API_URL = "https://nightingalemobile.revelry-prod.revelry.net/api";
+				API_URL = "https://nightingale-server.nightingale.revelry.org";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;

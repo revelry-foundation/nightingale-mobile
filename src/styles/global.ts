@@ -4,6 +4,7 @@ import {Colors} from '.'
 
 // BORDER-RADIUSES
 export const globalRadius = 3
+export const globalRadiusLarge = 20
 export const globalRounded = 100
 
 // BORDERS

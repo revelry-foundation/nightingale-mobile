@@ -8,7 +8,11 @@ function traverseEctoErrors(errors: {[x: string]: any}) {
   })
 }
 
-async function get(url: RequestInfo, access_token: string) {
+function apiUrl(path: string) {
+  return `${global.apiConfig.url}${path}`
+}
+
+async function get(url: RequestInfo, access_token: string | undefined) {
   const headers = {}
   headers['Accept'] = 'application/json'
   headers['Content-Type'] = headers['Accept']
@@ -26,7 +30,11 @@ async function get(url: RequestInfo, access_token: string) {
   return results
 }
 
-async function post(url: RequestInfo, access_token: string, body: any) {
+async function post(
+  url: RequestInfo,
+  access_token: string | undefined,
+  body: any
+) {
   const headers = {}
   headers['Accept'] = 'application/json'
   headers['Content-Type'] = headers['Accept']
@@ -49,7 +57,11 @@ async function post(url: RequestInfo, access_token: string, body: any) {
   return results
 }
 
-async function put(url: RequestInfo, access_token: string, body: any) {
+async function put(
+  url: RequestInfo,
+  access_token: string | undefined,
+  body: any
+) {
   const headers = {}
   headers['Accept'] = 'application/json'
   headers['Content-Type'] = headers['Accept']
@@ -72,4 +84,4 @@ async function put(url: RequestInfo, access_token: string, body: any) {
   return results
 }
 
-export {get, put, post, traverseEctoErrors}
+export {get, put, post, traverseEctoErrors, apiUrl}
