@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Subscribe} from 'unstated'
-import {Text, View, Switch, TouchableHighlight} from 'react-native'
+import {Text, View, ScrollView, Switch, TouchableHighlight} from 'react-native'
 
 import LoginStyles from '../styles/LogInStyles'
 import BusyButton from './BusyButton'
@@ -67,20 +67,75 @@ export class CovidStatusScreen extends Component<Props, State> {
 
     if (testedPositiveAt) {
       return (
-        <View style={{...loginStyles.container}}>
+        <View style={loginStyles.pageWrapper}>
+          <ScrollView style={loginStyles.container}>
+            <Text style={loginStyles.h1}>My COVID-19 Status</Text>
+            <Text style={loginStyles.h3}>
+              You tested positive on {formatDate(testedPositiveAt)}
+            </Text>
+            <View style={loginStyles.buttonContainer}>
+              <TouchableHighlight
+                style={loginStyles.button}
+                underlayColor="transparent"
+                onPress={this.handleSubmitNegative}>
+                <Text style={loginStyles.buttonText}>
+                  Change Status to Negative
+                </Text>
+              </TouchableHighlight>
+            </View>
+
+            <TouchableHighlight
+              onPress={() => navigate('Home')}
+              underlayColor="transparent">
+              <Text style={loginStyles.textLink}>Back</Text>
+            </TouchableHighlight>
+          </ScrollView>
+        </View>
+      )
+    }
+
+    return (
+      <View style={loginStyles.pageWrapper}>
+        <ScrollView style={loginStyles.container}>
           <Text style={loginStyles.h1}>My COVID-19 Status</Text>
-          <Text style={loginStyles}>
-            You tested positive on {formatDate(testedPositiveAt)}
+          <Text style={loginStyles.h2}>
+            Your information is completely anonymous.
           </Text>
+          <Text style={loginStyles.contentLeft}>
+            If you update your status to Positive, you have the opportunity to
+            upload anonymous data about the locations you've visited while
+            contagious. Others will be notified if their history indicates they
+            were in your proximity during that time, but none of your personal
+            details are collected or shared.
+          </Text>
+
           <View style={loginStyles.buttonContainer}>
             <TouchableHighlight
               style={loginStyles.button}
               underlayColor="transparent"
-              onPress={this.handleSubmitNegative}>
+              onPress={this.handleSubmitPositive}>
               <Text style={loginStyles.buttonText}>
-                Change Status to Negative
+                Change Status to Positive
               </Text>
             </TouchableHighlight>
+          </View>
+
+          <Text style={loginStyles.contentLeft}>
+            May we anonymously share your locations for the past 14 days to help
+            your community stay safe?
+          </Text>
+
+          <View
+            style={{
+              ...loginStyles.container,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <Text style={loginStyles.label}>Share my locations</Text>
+            <Switch
+              value={this.state.uploadEnabled}
+              onValueChange={this.handleUploadValueChange}
+            />
           </View>
 
           <TouchableHighlight
@@ -88,58 +143,7 @@ export class CovidStatusScreen extends Component<Props, State> {
             underlayColor="transparent">
             <Text style={loginStyles.textLink}>Back</Text>
           </TouchableHighlight>
-        </View>
-      )
-    }
-
-    return (
-      <View style={{...loginStyles.container}}>
-        <Text style={loginStyles.h1}>My COVID-19 Status</Text>
-        <Text style={loginStyles.h2}>
-          Your information is completely anonymous.
-        </Text>
-        <Text style={loginStyles.contentLeft}>
-          If you update your status to Positive, you have the opportunity to
-          upload anonymous data about the locations you've visited while
-          contagious. Others will be notified if their history indicates they
-          were in your proximity during that time, but none of your personal
-          details are collected or shared.
-        </Text>
-
-        <View style={loginStyles.buttonContainer}>
-          <TouchableHighlight
-            style={loginStyles.button}
-            underlayColor="transparent"
-            onPress={this.handleSubmitPositive}>
-            <Text style={loginStyles.buttonText}>
-              Change Status to Positive
-            </Text>
-          </TouchableHighlight>
-        </View>
-
-        <Text style={loginStyles.contentLeft}>
-          May we anonymously share your locations for the past 14 days to help
-          your community stay safe?
-        </Text>
-
-        <View
-          style={{
-            ...loginStyles.container,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <Text style={loginStyles.label}>Share my locations</Text>
-          <Switch
-            value={this.state.uploadEnabled}
-            onValueChange={this.handleUploadValueChange}
-          />
-        </View>
-
-        <TouchableHighlight
-          onPress={() => navigate('Home')}
-          underlayColor="transparent">
-          <Text style={loginStyles.textLink}>Back</Text>
-        </TouchableHighlight>
+        </ScrollView>
       </View>
     )
   }

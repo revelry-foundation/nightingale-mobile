@@ -34,7 +34,7 @@ export default class App extends Component {
 
     return (
       <Provider inject={[locationStorage, statusStorage]}>
-        <StatusBar barStyle="dark-content" />
+        <StatusBar barStyle="light-content" />
         <AppContainer />
         <LocationListener locationStorage={locationStorage} />
       </Provider>

@@ -1,10 +1,13 @@
 import React, {Component} from 'react'
-import {ScrollView, SafeAreaView, RefreshControl, Text} from 'react-native'
+import {ScrollView, RefreshControl, View} from 'react-native'
 import {NavigationEvents} from 'react-navigation'
 import Feather from 'react-native-vector-icons/Feather'
 
+import LoginStyles from '../styles/LogInStyles'
 import {HomeStackProps} from '../navigation/HomeStack'
 import CovidStatusIndicator from './CovidStatusIndicator'
+
+const loginStyles = LoginStyles.createStyles()
 
 class HomeScreen extends Component<HomeStackProps> {
   static navigationOptions = {
@@ -21,9 +24,10 @@ class HomeScreen extends Component<HomeStackProps> {
 
   render() {
     return (
-      <SafeAreaView>
+      <View style={loginStyles.pageWrapper}>
         <NavigationEvents onDidFocus={this.onDidFocus} />
         <ScrollView
+          style={loginStyles.container}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
@@ -32,7 +36,7 @@ class HomeScreen extends Component<HomeStackProps> {
           }>
           <CovidStatusIndicator navigation={this.props.navigation} />
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 }

@@ -32,6 +32,9 @@ const HomeStack: Component<HomeStackProps> = createStackNavigator(
         backgroundColor: Colors.brandPrimary,
         shadowColor: 'transparent',
       },
+      headerTitleStyle: {
+        color: 'white',
+      },
     }),
   }
 )

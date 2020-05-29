@@ -30,21 +30,19 @@ export class CovidStatusIndicator extends Component<Props, {}> {
     const {navigate} = this.props.navigation
 
     return (
-      <View
-        style={{
-          ...loginStyles.container,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
-        <View>
-          <Text>My Covid Status</Text>
-          <Text>{this.statusText}</Text>
-        </View>
-        <View>
+      <View>
+        <Text style={{...loginStyles.h1, ...loginStyles.textCenter}}>
+          My Covid Status
+        </Text>
+        <Text style={{...loginStyles.h2, ...loginStyles.textCenter}}>
+          {this.statusText}
+        </Text>
+        <View style={loginStyles.buttonContainer}>
           <TouchableHighlight
+            style={loginStyles.button}
             onPress={() => navigate('CovidStatus')}
             underlayColor="transparent">
-            <Text style={loginStyles.textLink}>Update Status</Text>
+            <Text style={loginStyles.buttonText}>Update Status</Text>
           </TouchableHighlight>
         </View>
       </View>

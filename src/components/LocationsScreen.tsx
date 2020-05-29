@@ -1,9 +1,13 @@
-import React, { Component } from 'react'
-import { Subscribe } from 'unstated'
-import { Text, ScrollView, SafeAreaView } from 'react-native'
+import React, {Component} from 'react'
+import {Subscribe} from 'unstated'
+import {Text, ScrollView, SafeAreaView, View} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
+import LoginStyles from '../styles/LogInStyles'
+import {formatDate} from '../helpers/dates'
+
+const loginStyles = LoginStyles.createStyles()
 
 interface Props {
   isFetching: boolean
@@ -16,30 +20,35 @@ interface Props {
 export class LocationsScreen extends Component<Props> {
   render() {
     return (
-      <SafeAreaView>
-        <ScrollView>
-          {this.props.isFetching && (
-            <Text>...loading locations...</Text>
-          )}
-          {this.props.locations.map((location: Location) => (
-            <Text key={location.when}>
-              {location.latitude}, {location.longitude} at {location.when}
-            </Text>
-          ))}
+      <View style={loginStyles.pageWrapper}>
+        <ScrollView style={loginStyles.containerCollapsed}>
+          {this.props.isFetching && <Text>...loading locations...</Text>}
+          <View style={loginStyles.list}>
+            {this.props.locations.map((location: Location) => (
+              <View style={loginStyles.listItem} key={location.when}>
+                <Text style={loginStyles.bodyCopy}>
+                  You were at {location.latitude}, {location.longitude}
+                </Text>
+                <Text style={loginStyles.bodyCopySmall}>
+                  {formatDate(location.when)}
+                </Text>
+              </View>
+            ))}
+          </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     )
   }
 }
 
 class LocationScreenWrapper extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <Subscribe to={[LocationStorageContainer]}>
         {locationStorage => (
           <LocationsScreen
             isFetching={locationStorage.state.isFetching}
-            locations={locationStorage.state.locations} 
+            locations={locationStorage.state.locations}
           />
         )}
       </Subscribe>
