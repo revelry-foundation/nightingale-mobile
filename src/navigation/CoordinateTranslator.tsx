@@ -1,3 +1,6 @@
+import {Platform} from 'react-native'
+import {GOOGLE_PLACES_API_KEY} from 'react-native-dotenv'
+
 async function doRequest(endpoint) {
   try {
     const options = {
@@ -21,28 +24,33 @@ async function doRequest(endpoint) {
 }
 
 export function reverseGeocode(latitude, longitude) {
-  console.log(latitude, longitude, 'THE COORDINATES')
-  const apiKey = 'a secret'
+  if (Platform.OS === 'ios') {
+    const apiKey = GOOGLE_PLACES_API_KEY
 
-  if (latitude && longitude) {
-    const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
+    console.log(latitude, longitude, 'THE COORDINATES')
 
-    return doRequest(endpoint)
-  } else {
-    return [false, {}]
+    if (latitude && longitude) {
+      const endpoint = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${apiKey}`
+
+      return doRequest(endpoint)
+    } else {
+      return [false, {}]
+    }
   }
+
+  // TODO: Add in android config here
+  // found in this readme https://github.com/csath/react-native-config-reader
 }
 
-export async function formatAddressInfo(location) {
-  const parsedLocation = JSON.parse(location)
-  const response = await reverseGeocode(
-    parsedLocation.coords.latitude,
-    parsedLocation.coords.longitude
-  )
+export async function formatAddressInfo(lat, lng) {
+  console.log(location, 'THIS IS THE LOCATION')
+  const response = await reverseGeocode(lat, lng)
 
+  console.log(response, 'this is the response!')
   if (response[1].results && response[1].results.length) {
     const addressInfo = response[1].results[0].formatted_address
 
+    console.log(addressInfo, 'ADDRESS INFO')
     return addressInfo
   }
 }
