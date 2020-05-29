@@ -9,6 +9,7 @@ import {StatusBar} from 'react-native'
 import AppStack from './src/navigation/AppStack'
 import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
+import CovidStatusContainer from './src/containers/CovidStatusContainer'
 
 const AppNavigator = createSwitchNavigator(
   {
@@ -29,10 +30,11 @@ export default class App extends Component {
   }
   render() {
     const locationStorage = new LocationStorageContainer(this.props)
+    const statusStorage = new CovidStatusContainer(this.props)
 
     return (
-      <Provider inject={[locationStorage]}>
-        <StatusBar barStyle="dark-content" />
+      <Provider inject={[locationStorage, statusStorage]}>
+        <StatusBar barStyle="light-content" />
         <AppContainer />
         <LocationListener locationStorage={locationStorage} />
       </Provider>
