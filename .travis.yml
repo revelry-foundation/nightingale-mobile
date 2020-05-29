@@ -1,3 +1,5 @@
+addons:
+  ssh_known_hosts: github.com
 jobs:
   include:
   - stage: tests
