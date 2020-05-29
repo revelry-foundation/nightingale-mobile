@@ -32,12 +32,22 @@ const LoginStyles = {
   h2: {
     ...Headers.h2,
   },
+  h3: {
+    ...Headers.h3,
+  },
   bodyCopy: {
     ...Typography.bodyCopy,
   },
   bodyCopySmall: {
     ...Typography.bodyCopySmall,
     color: Colors.gray,
+  },
+  textCenter: {
+    textAlign: 'center',
+  },
+  contentLeft: {
+    marginBottom: Spacing.globalMarginLarge,
+    textAlign: 'left',
   },
   // BUTTONS
   buttonContainer: {
@@ -115,6 +125,9 @@ const LoginStyles = {
     color: Colors.black,
     fontFamily: Fonts.bodyFontBold,
     paddingLeft: Spacing.globalPaddingTiny,
+  },
+  textLink: {
+    ...Typography.textLink,
   },
   textLinkSmall: {
     ...Typography.textLinkSmall,

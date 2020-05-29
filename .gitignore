@@ -68,4 +68,8 @@ buck-out/
 /ci/certs_key
 
 # api keys
+<<<<<<< HEAD
 .env
+=======
+.env
+>>>>>>> 9b67b33868fd3be09ce4f779a3c3efe7bc60a60c

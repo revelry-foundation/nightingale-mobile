@@ -44,7 +44,7 @@ const AppStack = createDrawerNavigator(
     initialRouteName: 'Home',
     contentComponent: Drawer,
     contentOptions: {
-      activeTintColor: '#F37021',
+      activeTintColor: '#1e7ac9',
       labelStyle: {
         fontSize: Typography.bodyFontSizeLarge,
         fontWeight: Typography.fontWeightNormal,

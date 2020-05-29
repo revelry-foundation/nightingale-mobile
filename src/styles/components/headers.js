@@ -28,6 +28,7 @@ export const h3 = {
   color: Colors.headerColor,
   fontFamily: Fonts.headerFont,
   fontSize: h3Size,
+  marginBottom: Spacing.globalMargin,
 }
 export const h4 = {
   color: Colors.headerColor,
