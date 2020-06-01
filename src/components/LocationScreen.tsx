@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableHighlight, TextInput, ScrollView } from 'react-native'
+import { Text, View, TouchableHighlight, ScrollView, SafeAreaView, StyleSheet } from 'react-native'
 import LoginStyles from '../styles/LogInStyles'
 
 const loginStyles = LoginStyles.createStyles()
@@ -20,23 +20,29 @@ export default class LocationScreen extends Component {
     const location =  this.props.navigation.getParam("location")
     
     return (
-      <View style={loginStyles.pageWrapper}>
-        <ScrollView style={loginStyles.containerCollapsed}>
-        <TouchableHighlight onPress={this.handleGoBack}>
-          <View >
-            <Text>Back</Text>
+      <SafeAreaView style={loginStyles.pageWrapper}>
+        <ScrollView style={loginStyles.container}>
+          <View>
+            <TouchableHighlight onPress={this.handleGoBack}>
+              <Text style={styles.buttonLink}>Back</Text>
+            </TouchableHighlight>
           </View>
-        </TouchableHighlight>
-        <Text style={loginStyles.bodyCopy}>
-          {location && location.address}
-        </Text>
-        <View>
-          <TouchableHighlight onPress={this.handleDeleteLocation}>
-            <Text>Delete</Text>
-          </TouchableHighlight>
-        </View>
+          <Text style={loginStyles.h3}>
+            {location && location.address}
+          </Text>
+          <View style={loginStyles.buttonContainer}>
+              <TouchableHighlight style={loginStyles.button} onPress={this.handleDeleteLocation}>
+                <Text style={loginStyles.buttonText}>Delete</Text>
+              </TouchableHighlight>
+          </View>
         </ScrollView>
-      </View>
+      </SafeAreaView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  buttonLink: {
+    color: 'blue'
+  }
+})
