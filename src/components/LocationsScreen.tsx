@@ -4,8 +4,8 @@ import {Text, ScrollView, View} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
+import LocationCard from './LocationCard'
 import LoginStyles from '../styles/LogInStyles'
-import {formatDate} from '../helpers/dates'
 
 const loginStyles = LoginStyles.createStyles()
 
@@ -18,6 +18,14 @@ interface Props {
  * View / edit the visited locations
  */
 export class LocationsScreen extends Component<Props> {
+  handleViewLocation = (location: Location) => {
+    const {
+      navigation: {navigate},
+      locationStorage: {deleteLocation}
+    } = this.props
+    navigate('Location', {location, deleteLocation})
+  }
+
   render() {
     return (
       <View style={loginStyles.pageWrapper}>
@@ -26,10 +34,7 @@ export class LocationsScreen extends Component<Props> {
           <View style={loginStyles.list}>
             {this.props.locations.map((location: Location) => (
               <View style={loginStyles.listItem} key={location.when}>
-                <Text style={loginStyles.bodyCopy}>{location.address}</Text>
-                <Text style={loginStyles.bodyCopySmall}>
-                  {formatDate(location.when)}
-                </Text>
+                <LocationCard location={location} handleViewLocation={this.handleViewLocation}></LocationCard>
               </View>
             ))}
           </View>
@@ -47,6 +52,8 @@ class LocationScreenWrapper extends Component {
           <LocationsScreen
             isFetching={locationStorage.state.isFetching}
             locations={locationStorage.state.locations}
+            navigation={this.props.navigation}
+            locationStorage={locationStorage}
           />
         )}
       </Subscribe>

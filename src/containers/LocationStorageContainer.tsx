@@ -107,6 +107,14 @@ export default class LocationStorageContainer extends Container<
 
     return this.saveLocations()
   }
+  
+  deleteLocation = async (timestamp: string) => {
+    const updatedLocations = this.state.locations.filter(location => location.when != timestamp)
+
+    await this.setState({locations: updatedLocations || []})
+
+    return this.saveLocations()
+  }
 
   private saveLocations = () => {
     const locationsEncoded = JSON.stringify(this.state.locations)
