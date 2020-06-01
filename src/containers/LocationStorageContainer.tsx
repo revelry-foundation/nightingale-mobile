@@ -107,26 +107,28 @@ export default class LocationStorageContainer extends Container<
 
     return this.saveLocations()
   }
+  
+  deleteLocation = async (timestamp: string) => {
+    const updatedLocations = this.state.locations.filter(location => location.when != timestamp)
 
-  deleteOrEditLocation = async (index: number, updatedLocation: object) => {
-    // get locations, remove the location by index
-    let locations = await SInfo.getItem(LOCATIONS_KEY, SINFO_OPTIONS)
-    locations = JSON.parse(locations)
-    if(updatedLocation) {
-      locations.splice(index, 1, updatedLocation) // locationUpdate needs to be an object with {lat, long, when}
-    } else {
-      locations.splice(index, 1) 
-    }
+    await this.setState({locations: updatedLocations || []})
 
-    await SInfo.deleteItem(LOCATIONS_KEY, SINFO_OPTIONS)
-    await SInfo.setItem(LOCATIONS_KEY, JSON.stringify(locations), SINFO_OPTIONS)
+    return this.saveLocations()
+  }
 
-    await this.setState({
-      isFetching: false,
-      locations: locations || [],
-      locationsLoaded: true,
+  editLocation = async (timestamp: string, updatedLocation: Location) => {
+    const updatedLocations = this.state.locations.map(location => {
+      if (location.when == timestamp) {
+        location = updatedLocation
+        return location
+      } else {
+        return location;
+      }
     })
-    return this.state.locations
+
+    await this.setState({locations: updatedLocations || []})
+
+    return this.saveLocations()
   }
 
   private saveLocations = () => {

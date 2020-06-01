@@ -15,19 +15,15 @@ interface Props {
 export default function LocationCard({
   // eslint-disable-line complexity
   location,
-  index,
   handleViewLocation
 }) {
   return (
-    <TouchableHighlight
-      onPress={() => handleViewLocation(index, location)} // using index to delete or edit location
-    >
+    <TouchableHighlight onPress={() => handleViewLocation(location)}>
       <View>
-<Text style={loginStyles.bodyCopy}>{location.address}</Text>
-<Text style={loginStyles.bodyCopySmall}>
-  {formatDate(location.when)}
-</Text> 
-
+        <Text style={loginStyles.bodyCopy}>{location && location.address || "address not available"}</Text>
+        <Text style={loginStyles.bodyCopySmall}>
+          {location && formatDate(location.when) || "time unavailable"}
+        </Text> 
       </View>
     </TouchableHighlight>
   )

@@ -18,12 +18,12 @@ interface Props {
  * View / edit the visited locations
  */
 export class LocationsScreen extends Component<Props> {
-  handleViewLocation = (index: number, location: object) => {
+  handleViewLocation = (location: Location) => {
     const {
       navigation: {navigate},
-      locationStorage: {deleteOrEditLocation}
+      locationStorage: {deleteLocation, editLocation}
     } = this.props
-    navigate('Location', {index, location, deleteOrEditLocation})
+    navigate('Location', {location, deleteLocation, editLocation})
   }
 
   render() {
@@ -32,9 +32,9 @@ export class LocationsScreen extends Component<Props> {
         <ScrollView style={loginStyles.containerCollapsed}>
           {this.props.isFetching && <Text>...loading locations...</Text>}
           <View style={loginStyles.list}>
-            {this.props.locations.map((location: Location, index: number) => (
+            {this.props.locations.map((location: Location) => (
               <View style={loginStyles.listItem} key={location.when}>
-                <LocationCard key={location.when} location={location} index={index} handleViewLocation={this.handleViewLocation}></LocationCard>
+                <LocationCard location={location} handleViewLocation={this.handleViewLocation}></LocationCard>
               </View>
             ))}
           </View>
