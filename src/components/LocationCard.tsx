@@ -22,7 +22,7 @@ export default function LocationCard({
       <View>
         <Text style={loginStyles.bodyCopy}>{location && location.address}</Text>
         <Text style={loginStyles.bodyCopySmall}>
-          {location && formatDate(location.when) || "time unavailable"}
+          {location && formatDate(location.when)}
         </Text> 
       </View>
     </TouchableHighlight>

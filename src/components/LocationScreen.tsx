@@ -13,8 +13,8 @@ export default class LocationScreen extends Component {
 
   handleDeleteLocation = () => {
     const deleteLocation = this.props.navigation.getParam("deleteLocation")
-    const timestamp = this.props.navigation.getParam("location") 
-    deleteLocation(timestamp.when)
+    const timestamp = this.props.navigation.getParam("location").when
+    deleteLocation(timestamp)
     this.props.navigation.goBack()
   }
 
