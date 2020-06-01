@@ -116,21 +116,6 @@ export default class LocationStorageContainer extends Container<
     return this.saveLocations()
   }
 
-  editLocation = async (timestamp: string, updatedLocation: Location) => {
-    const updatedLocations = this.state.locations.map(location => {
-      if (location.when == timestamp) {
-        location = updatedLocation
-        return location
-      } else {
-        return location;
-      }
-    })
-
-    await this.setState({locations: updatedLocations || []})
-
-    return this.saveLocations()
-  }
-
   private saveLocations = () => {
     const locationsEncoded = JSON.stringify(this.state.locations)
     return SInfo.setItem(LOCATIONS_KEY, locationsEncoded, SINFO_OPTIONS)

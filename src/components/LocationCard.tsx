@@ -20,7 +20,7 @@ export default function LocationCard({
   return (
     <TouchableHighlight onPress={() => handleViewLocation(location)}>
       <View>
-        <Text style={loginStyles.bodyCopy}>{location && location.address || "address not available"}</Text>
+        <Text style={loginStyles.bodyCopy}>{location && location.address}</Text>
         <Text style={loginStyles.bodyCopySmall}>
           {location && formatDate(location.when) || "time unavailable"}
         </Text> 
