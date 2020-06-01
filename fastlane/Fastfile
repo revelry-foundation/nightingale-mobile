@@ -49,7 +49,9 @@ platform :ios do
     build
     pilot(username: "robert@revelry.co", skip_waiting_for_build_processing: true, apple_id: "1515352411")
     commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/nightingalemobile.xcodeproj', force: true)
-    push_to_git_remote(remote_branch: 'develop')
+    sh "git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git"
+    push_to_git_remote(remote: "ssh-origin", remote_branch: 'develop')
+    
   end
 end
 
@@ -74,6 +76,7 @@ platform :android do
       release_status: 'draft'
     )
     git_commit(path: "android/app/build.gradle", message: "[skip travis] Bump build android")
-    push_to_git_remote(remote_branch: 'develop')
+    sh "git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git"
+    push_to_git_remote(remote: "ssh-origin", remote_branch: 'develop')
   end
 end
