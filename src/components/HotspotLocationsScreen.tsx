@@ -21,74 +21,88 @@ interface Props {
   }
 
 class HotspotLocationsScreen extends Component<Props> {
-    render() {
-        return (
-        <SafeAreaView style={loginStyles.pageWrapper}>
+  render() {
+    return (
+      <SafeAreaView style={loginStyles.pageWrapper}>
         <ScrollView style={loginStyles.container}>
-            <View>
+          <View>
             <View style={loginStyles.spaceVertical}>
             <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
               <Text style={styles.buttonLink}>Back to Disclaimer</Text>
             </TouchableHighlight>
-            <Text style={{...loginStyles.h1, ...loginStyles.textCenter, ...styles.spaceVertical}}>
-          Covid 19 Hotspots
-        </Text>
-        <Text style={styles.spaceVertical}>Possible Matches Based on Date, Time and Location</Text>
-            <Text style={loginStyles.bodyCopySmall}>This list indicates possible matches 
-            between your locations and known hotspots. These possible matches are based on the date and time of each location.
-            </Text>
-            </View>
-              {this.props.isFetching && <Text>...loading locations...</Text>}
-              <View>
-                {this.props.hotspotLocations.map(({location, hotspotLocation}) => (
-                  <View style={[baseCard, styles.spaceVertical]} key={location.when}>
-                    <View>
-                    <Text style={styles.spaceVertical}>My Location</Text>
-                    <Text style={loginStyles.bodyCopy}>{location && location.address}</Text>
-                    <Text style={loginStyles.bodyCopySmall}>
+          <Text style={{...loginStyles.h1, ...loginStyles.textCenter, ...styles.spaceVertical}}>
+            Covid 19 Hotspots
+          </Text>
+          <Text style={styles.spaceVertical}>
+            Possible Matches Based on Date, Time and Location
+          </Text>
+          <Text style={loginStyles.bodyCopySmall}>
+            This list indicates possible matches 
+            between your locations and known hotspots. 
+            These possible matches are based on the date and time of each location.
+          </Text>
+          </View>
+          <View>
+            {this.props.isFetching && <Text>...loading locations...</Text>}
+          </View>
+          <View>
+            {this.props.hotspotLocations.map(({location, hotspotLocation}) => (
+              <View style={[baseCard, styles.spaceVertical]} key={location.when}>
+                <View>
+                  <Text style={styles.spaceVertical}>
+                    My Location
+                  </Text>
+                  <Text style={loginStyles.bodyCopy}>
+                    {location && location.address}
+                  </Text>
+                  <Text style={loginStyles.bodyCopySmall}>
                     {location && formatDateTime(location.when)}
-            </Text> 
-        </View>
-                    <View style={cardDivider}>
-                    <Text style={styles.spaceVertical}>Hotspot</Text>
-                    <Text style={loginStyles.bodyCopy}>{JSON.stringify(hotspotLocation)}</Text>
-      </View>
-                  </View>
-                ))}
-              </View>
+                  </Text> 
+                </View>
+                <View style={cardDivider}>
+                  <Text style={styles.spaceVertical}>
+                    Hotspot
+                  </Text>
+                  <Text style={loginStyles.bodyCopy}>
+                    {JSON.stringify(hotspotLocation)}
+                  </Text>
+                </View>
+                </View>
+              ))}
             </View>
-            </ScrollView>
-            </SafeAreaView>
-            )
-    }
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    )
+  }
 }
 
 class HotspotLocationsScreenWrapper extends Component{
-    render() {
-      return (
-        <Subscribe to={[HotspotsContainer]}>
-          {(hotspotsContainer: HotspotsContainer) => (
-            <HotspotLocationsScreen
-              hotspotLocations={hotspotsContainer.state.hotspotLocations}
-              isFetching={hotspotsContainer.state.isfetching}
-              navigation={this.props.navigation}
-            />
-          )}
-        </Subscribe>
-      )
-    }
+  render() {
+    return (
+      <Subscribe to={[HotspotsContainer]}>
+        {(hotspotsContainer: HotspotsContainer) => (
+          <HotspotLocationsScreen
+            hotspotLocations={hotspotsContainer.state.hotspotLocations}
+            isFetching={hotspotsContainer.state.isfetching}
+            navigation={this.props.navigation}
+          />
+        )}
+      </Subscribe>
+    )
   }
+}
 
 const styles = StyleSheet.create({
-buttonLink: {
+  buttonLink: {
     color: Colors.brandPrimary,
     fontWeight: 'bold',
     paddingVertical: Spacing.globalPadding,
     fontSize: Size.globalSize,
-},
-spaceVertical: {
+  },
+  spaceVertical: {
     marginVertical: Spacing.globalMarginSmall,
-}
+  }
 })
 
 export default HotspotLocationsScreenWrapper
