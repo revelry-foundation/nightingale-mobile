@@ -27,12 +27,12 @@ jobs:
     # - gem install bundler:2.0.2
     # - bundle install
     before_script:
-    - openssl aes-256-cbc -K $encrypted_db4416ddba70_key -iv $encrypted_db4416ddba70_iv 
+    - openssl aes-256-cbc -k $encrypted_db4416ddba70_key -d -md $encrypted_db4416ddba70_iv -a
       -in ./ci/certs_key.enc -out ./ci/certs_key -d
     - eval "$(ssh-agent -s)"
     - echo "Host github.com" > ~/.ssh/config
     - echo "  IdentityFile  $(pwd)/ci/certs_key" >> ~/.ssh/config
-    - chmod 400 ./ci/certs_key
+    - chmod 400 certs_key
     - git remote set-url origin git@github.com:revelry-foundation/nightingale-mobile.git
     - git commit --allow-empty -m "Empty commit"
     - git push origin verbose-match-fix-travis
