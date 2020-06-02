@@ -2,20 +2,20 @@ addons:
   ssh_known_hosts: github.com
 jobs:
   include:
-  - stage: tests
-    os: osx
-    osx_image: xcode11.1
-    language: node_js
-    node_js: lts/*
-    name: Unit Tests
-    cache:
-      directories:
-      - "~/.npm"
-    before_script:
-    - npm install -g npm@latest
-    script:
-    - npm ci
-    - npx jest --ci --passWithNoTests
+  # - stage: tests
+  #   os: osx
+  #   osx_image: xcode11.1
+  #   language: node_js
+  #   node_js: lts/*
+  #   name: Unit Tests
+  #   cache:
+  #     directories:
+  #     - "~/.npm"
+  #   before_script:
+  #   - npm install -g npm@latest
+  #   script:
+  #   - npm ci
+  #   - npx jest --ci --passWithNoTests
   - stage: deploy-staging-ios
     os: osx
     osx_image: xcode11.5
