@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import {Subscribe} from 'unstated'
-import {Text, View, ScrollView, Switch, TouchableHighlight} from 'react-native'
+import {Text, View, ScrollView, TouchableHighlight, SafeAreaView, StyleSheet} from 'react-native'
 
 import LoginStyles from '../styles/LogInStyles'
-import LocationStorageContainer, {
-  Location,
-} from '../containers/LocationStorageContainer'
+import {Location} from '../containers/LocationStorageContainer'
 import PositiveLocationsContainer from '../containers/PositiveLocationsContainer'
-import {formatDate} from '../helpers/dates'
+import {formatDateTime} from '../helpers/dates'
+import * as Colors from '../styles/colors'
+import * as Spacing from '../styles/spacing'
+import * as Size from '../styles/sizes'
 
 const loginStyles = LoginStyles.createStyles()
 
@@ -20,24 +21,33 @@ interface Props {
 
 class PositiveLocationsScreen extends Component<Props> {
     render() {
-        console.log(this.props.positiveLocations)
         return (
+            <SafeAreaView style={loginStyles.pageWrapper}>
+        <ScrollView style={loginStyles.container}>
             <View>
-            <View>
+            <View style={loginStyles.spaceVertical}>
             <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
-                <Text>Back</Text>
+              <Text style={styles.buttonLink}>Back</Text>
             </TouchableHighlight>
-            <Text>places you may have crossed paths with a covid 19 patient</Text>
             </View>
               {this.props.isFetching && <Text>...loading locations...</Text>}
               <View style={loginStyles.list}>
                 {this.props.positiveLocations.map((location: Location) => (
                   <View style={loginStyles.listItem} key={location.when}>
-                    <Text>{JSON.stringify(location)}</Text>
+                    <TouchableHighlight onPress={() => this.props.navigation.navigate('PositiveLocationScreen')}>
+                    <View>
+                    <Text style={loginStyles.bodyCopy}>{location && location.address}</Text>
+                    <Text style={loginStyles.bodyCopySmall}>
+                    {location && formatDateTime(location.when)}
+        </Text> 
+      </View>
+    </TouchableHighlight>
                   </View>
                 ))}
               </View>
             </View>
+            </ScrollView>
+            </SafeAreaView>
             )
     }
 }
@@ -57,5 +67,17 @@ class PositiveLocationsScreenWrapper extends Component{
       )
     }
   }
+
+const styles = StyleSheet.create({
+buttonLink: {
+    color: Colors.brandPrimary,
+    fontWeight: 'bold',
+    paddingVertical: Spacing.globalPadding,
+    fontSize: Size.globalSize,
+},
+spaceVertical: {
+    marginVertical: Spacing.globalMarginSmall,
+}
+})
 
 export default PositiveLocationsScreenWrapper
