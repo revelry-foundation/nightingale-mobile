@@ -9,7 +9,7 @@ const LOCATIONS_KEY = 'nightingale_locations'
 const SINFO_OPTIONS = {}
 
 export interface HotspotLocationState {
-  hotspotLocations: Location[]
+  hotspotPositives: Location[]
   isfetching: boolean
 }
 
@@ -17,7 +17,7 @@ export default class HotspotsContainer extends Container<HotspotLocationState>{
   constructor(_props = {}) {
     super()
     this.state = {
-      hotspotLocations: [],
+      hotspotPositives: [],
       isFetching: false,
     }
     this.init()
@@ -50,12 +50,12 @@ export default class HotspotsContainer extends Container<HotspotLocationState>{
         return get(`${url}?${params}`, undefined)
         .then(positiveLocation => {
           if(positiveLocation.positives.length) {
-            return {location, hotspotLocation: positiveLocation.positives}
+            return {location, positives: positiveLocation.positives}
           }
         })
       }))
     })
-    .then(locations => this.setState({hotspotLocations: locations.filter(location => location), isFetching: false}))
+    .then(locations => this.setState({hotspotPositives: locations.filter(location => location), isFetching: false}))
   }
 }
 

@@ -14,7 +14,7 @@ import {baseCard, cardDivider} from '../styles/components/cards'
 const loginStyles = LoginStyles.createStyles()
 
 interface Props {
-    hotspotLocations: any,
+    hotspotPositives: any,
     navigation: {
       navigate(dest: string): object
     }
@@ -46,7 +46,7 @@ class HotspotLocationsScreen extends Component<Props> {
             {this.props.isFetching && <Text>...loading locations...</Text>}
           </View>
           <View>
-            {this.props.hotspotLocations.map(({location, hotspotLocation}) => (
+              {this.props.hotspotPositives.map(({location, positives}) => (
               <View style={[baseCard, styles.spaceVertical]} key={location.when}>
                 <View>
                   <Text style={styles.spaceVertical}>
@@ -64,7 +64,7 @@ class HotspotLocationsScreen extends Component<Props> {
                     Hotspot
                   </Text>
                   <Text style={loginStyles.bodyCopy}>
-                    {JSON.stringify(hotspotLocation)}
+                    There are {positives.length} positive(s) that were within 10 meters of this location, +/- 30 minutes from when you were there. 
                   </Text>
                 </View>
                 </View>
@@ -83,7 +83,7 @@ class HotspotLocationsScreenWrapper extends Component{
       <Subscribe to={[HotspotsContainer]}>
         {(hotspotsContainer: HotspotsContainer) => (
           <HotspotLocationsScreen
-            hotspotLocations={hotspotsContainer.state.hotspotLocations}
+            hotspotPositives={hotspotsContainer.state.hotspotPositives}
             isFetching={hotspotsContainer.state.isfetching}
             navigation={this.props.navigation}
           />
