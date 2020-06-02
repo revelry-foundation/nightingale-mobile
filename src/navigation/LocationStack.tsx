@@ -4,11 +4,13 @@ import {createStackNavigator} from 'react-navigation-stack'
 import Feather from 'react-native-vector-icons/Feather'
 import LocationsScreen from '../components/LocationsScreen'
 import LocationScreen from '../components/LocationScreen'
+import PositiveLocationsScreen from '../components/PositiveLocationsScreen'
 
 const LocationsStack = createStackNavigator(
   {
     Locations: LocationsScreen,
-    Location: LocationScreen
+    Location: LocationScreen,
+    "Positive Locations": PositiveLocationsScreen,
   },
   {
     initialRouteName: 'Locations',

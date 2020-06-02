@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Subscribe} from 'unstated'
-import {Text, ScrollView, View} from 'react-native'
+import {Text, ScrollView, View, TouchableHighlight} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
@@ -29,6 +29,11 @@ export class LocationsScreen extends Component<Props> {
   render() {
     return (
       <View style={loginStyles.pageWrapper}>
+        <TouchableHighlight onPress={() => this.props.navigation.navigate("Positive Locations")}>
+          <View>
+            <Text>Crossed Paths</Text> 
+        </View>
+    </TouchableHighlight>
         <ScrollView style={loginStyles.containerCollapsed}>
           {this.props.isFetching && <Text>...loading locations...</Text>}
           <View style={loginStyles.list}>
