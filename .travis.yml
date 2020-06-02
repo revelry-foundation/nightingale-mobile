@@ -32,6 +32,7 @@ jobs:
     - eval "$(ssh-agent -s)"
     - chmod 600 ./ci/certs_key
     - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+    - echo -e "Host github\nHostName github.com\nUser git\nIdentityFile /home/travis/build/revelry-foundation/nightingale-mobile/ci/certs_key\nIdentitiesOnly yes" >> ~/.ssh/config
     - ssh-add ./ci/certs_key
     - git commit --allow-empty -m "Empty commit"
     - git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git
