@@ -1,11 +1,10 @@
 fastlane_version '2.140.0'
 before_all do
-  ensure_git_branch(
-    branch: 'HEAD'
-  )
+  ensure_git_branch(branch: 'HEAD')
   ensure_git_status_clean
   git_pull
 end
+
 platform :ios do
   desc 'Fetch certificates and provisioning profiles'
   # TODO: have user run match locally before going through setup
@@ -13,6 +12,7 @@ platform :ios do
     match(app_identifier: 'co.revelry.nightingale', type: 'development')
     match(type: 'appstore')
   end
+
   desc 'Build the iOS application.'
   private_lane :build do
     match(type: 'appstore', readonly: true, verbose: true)
@@ -34,6 +34,7 @@ platform :ios do
     gym(workspace: './ios/nightingalemobile.xcworkspace', configuration: 'Release', scheme: 'NightingaleMobile')
     enable_automatic_code_signing(path: './ios/nightingalemobile.xcodeproj')
   end
+
   desc 'Ship to Testflight.'
   lane :beta do
     xcversion(version: '11.5')
@@ -42,7 +43,7 @@ platform :ios do
     pilot(username: "robert@revelry.co", skip_waiting_for_build_processing: true, apple_id: "1515352411")
     commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/nightingalemobile.xcodeproj', force: true)
     sh "git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git"
-    push_to_git_remote(remote: "ssh-origin", remote_branch: 'develop')
+    push_to_git_remote(remote: "ssh-origin", remote_branch: 'verbose-match-fix-travis')
   end
 end
 
