@@ -27,7 +27,7 @@ jobs:
     # - gem install bundler:2.0.2
     # - bundle install
     before_script:
-    - openssl aes-256-cbc -k $encrypted_db4416ddba70_key -d -md $encrypted_db4416ddba70_iv -a
+    - openssl aes-256-cbc -K $encrypted_db4416ddba70_key -iv $encrypted_db4416ddba70_iv 
       -in ./ci/certs_key.enc -out ./ci/certs_key -d
     - eval "$(ssh-agent -s)"
     - echo "Host github.com" > ~/.ssh/config
