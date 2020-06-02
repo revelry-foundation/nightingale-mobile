@@ -8,16 +8,16 @@ import SInfo from 'react-native-sensitive-info'
 const LOCATIONS_KEY = 'nightingale_locations'
 const SINFO_OPTIONS = {}
 
-export interface PositiveLocationState {
-  positiveLocations: Location[]
+export interface HotspotLocationState {
+  hotspotLocations: Location[]
   isfetching: boolean
 }
 
-export default class PositiveLocationsContainer extends Container<PositiveLocationState>{
+export default class HotspotsContainer extends Container<HotspotLocationState>{
   constructor(_props = {}) {
     super()
     this.state = {
-      positiveLocations: [],
+      hotspotLocations: [],
       isFetching: false,
     }
     this.init()
@@ -28,10 +28,10 @@ export default class PositiveLocationsContainer extends Container<PositiveLocati
       isFetching: true,
     })
 
-    this.fetchMatchingPositiveLocations()
+    this.fetchMatchingHotspotLocations()
   }
 
-  fetchMatchingPositiveLocations = async () => {
+  fetchMatchingHotspotLocations = async () => {
     // if you're a covid patient, figure out what to do with this then. 
     // Just filter out your own locations maybe?
     this.setState({isFetching: true})
@@ -50,13 +50,13 @@ export default class PositiveLocationsContainer extends Container<PositiveLocati
         return get(`${url}?${params}`, undefined)
         .then(positiveLocation => {
           if(positiveLocation.positives.length) {
-            return {location, positiveLocation: positiveLocation.positives}
+            return {location, hotspotLocation: positiveLocation.positives}
           }
         })
       }))
     })
-    .then(locations => this.setState({positiveLocations: locations.filter(location => location), isFetching: false}))
+    .then(locations => this.setState({hotspotLocations: locations.filter(location => location), isFetching: false}))
   }
 }
 
-export {PositiveLocationsContainer}
+export {HotspotsContainer}

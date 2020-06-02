@@ -31,7 +31,7 @@ export class HotspotsSplashScreen extends Component {
         <View style={loginStyles.buttonContainer}>
           <TouchableHighlight
             style={loginStyles.button}
-            onPress={() => navigate('Positive Locations')}
+            onPress={() => navigate('Hotspot Locations')}
             underlayColor="transparent">
             <Text style={loginStyles.buttonText}>Compare my Locations to Hotspots</Text>
           </TouchableHighlight>

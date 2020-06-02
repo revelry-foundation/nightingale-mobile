@@ -10,7 +10,7 @@ import AppStack from './src/navigation/AppStack'
 import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
 import CovidStatusContainer from './src/containers/CovidStatusContainer'
-import PositiveLocationsContainer from './src/containers/PositiveLocationsContainer'
+import HotspotsContainer from './src/containers/HotspotsContainer'
 
 const AppNavigator = createSwitchNavigator(
   {
@@ -32,10 +32,10 @@ export default class App extends Component {
   render() {
     const locationStorage = new LocationStorageContainer(this.props)
     const statusStorage = new CovidStatusContainer(this.props)
-    const positiveLocations = new PositiveLocationsContainer(this.props)
+    const hotspotStorage = new HotspotsContainer(this.props)
 
     return (
-      <Provider inject={[locationStorage, statusStorage, positiveLocations]}>
+      <Provider inject={[locationStorage, statusStorage, hotspotStorage]}>
         <StatusBar barStyle="light-content" />
         <AppContainer />
         <LocationListener locationStorage={locationStorage} />

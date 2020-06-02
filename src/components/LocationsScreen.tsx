@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Subscribe} from 'unstated'
-import {Text, ScrollView, View, TouchableHighlight} from 'react-native'
+import {Text, ScrollView, View} from 'react-native'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'

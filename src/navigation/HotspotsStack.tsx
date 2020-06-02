@@ -2,13 +2,13 @@ import React from 'react'
 import {Colors} from '../styles'
 import {createStackNavigator} from 'react-navigation-stack'
 import Feather from 'react-native-vector-icons/Feather'
-import PositiveLocationsScreen from '../components/PositiveLocationsScreen'
+import HotspotLocationsScreen from '../components/HotspotLocationsScreen'
 import HotspotsSplashScreen from '../components/HotspotsSplashScreen'
 
 const HotspotsStack = createStackNavigator(
   {
     Hotspots: HotspotsSplashScreen,
-    "Positive Locations": PositiveLocationsScreen,
+    "Hotspot Locations": HotspotLocationsScreen,
   },
   {
     initialRouteName: 'Hotspots',

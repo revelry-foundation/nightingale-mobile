@@ -4,7 +4,7 @@ import {Text, View, ScrollView, TouchableHighlight, SafeAreaView, StyleSheet} fr
 
 import LoginStyles from '../styles/LogInStyles'
 import {Location} from '../containers/LocationStorageContainer'
-import PositiveLocationsContainer from '../containers/PositiveLocationsContainer'
+import HotspotsContainer from '../containers/HotspotsContainer'
 import {formatDateTime} from '../helpers/dates'
 import * as Colors from '../styles/colors'
 import * as Spacing from '../styles/spacing'
@@ -14,13 +14,13 @@ import {baseCard, cardDivider} from '../styles/components/cards'
 const loginStyles = LoginStyles.createStyles()
 
 interface Props {
-    positiveLocations: Location[]
+    hotspotLocations: any,
     navigation: {
       navigate(dest: string): object
     }
   }
 
-class PositiveLocationsScreen extends Component<Props> {
+class HotspotLocationsScreen extends Component<Props> {
     render() {
         return (
         <SafeAreaView style={loginStyles.pageWrapper}>
@@ -40,7 +40,7 @@ class PositiveLocationsScreen extends Component<Props> {
             </View>
               {this.props.isFetching && <Text>...loading locations...</Text>}
               <View>
-                {this.props.positiveLocations.map(({location, positiveLocation}) => (
+                {this.props.hotspotLocations.map(({location, hotspotLocation}) => (
                   <View style={[baseCard, styles.spaceVertical]} key={location.when}>
                     <View>
                     <Text style={styles.spaceVertical}>My Location</Text>
@@ -51,10 +51,7 @@ class PositiveLocationsScreen extends Component<Props> {
         </View>
                     <View style={cardDivider}>
                     <Text style={styles.spaceVertical}>Hotspot</Text>
-                    <Text style={loginStyles.bodyCopy}>{JSON.stringify(positiveLocation)}</Text>
-                    <Text style={loginStyles.bodyCopySmall}>
-                    {location && formatDateTime(location.when)}
-        </Text> 
+                    <Text style={loginStyles.bodyCopy}>{JSON.stringify(hotspotLocation)}</Text>
       </View>
                   </View>
                 ))}
@@ -66,14 +63,14 @@ class PositiveLocationsScreen extends Component<Props> {
     }
 }
 
-class PositiveLocationsScreenWrapper extends Component{
+class HotspotLocationsScreenWrapper extends Component{
     render() {
       return (
-        <Subscribe to={[PositiveLocationsContainer]}>
-          {(positiveLocationsContainer: PositiveLocationsContainer) => (
-            <PositiveLocationsScreen
-              positiveLocations={positiveLocationsContainer.state.positiveLocations}
-              isFetching={positiveLocationsContainer.state.isfetching}
+        <Subscribe to={[HotspotsContainer]}>
+          {(hotspotsContainer: HotspotsContainer) => (
+            <HotspotLocationsScreen
+              hotspotLocations={hotspotsContainer.state.hotspotLocations}
+              isFetching={hotspotsContainer.state.isfetching}
               navigation={this.props.navigation}
             />
           )}
@@ -94,4 +91,4 @@ spaceVertical: {
 }
 })
 
-export default PositiveLocationsScreenWrapper
+export default HotspotLocationsScreenWrapper
