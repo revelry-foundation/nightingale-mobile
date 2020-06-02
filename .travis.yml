@@ -35,7 +35,7 @@ jobs:
     - chmod 400 ./ci/certs_key
     - git remote set-url origin git@github.com:revelry-foundation/nightingale-mobile.git
     - git commit --allow-empty -m "Empty commit"
-    - git push origin verbose-match-fix-travis
+    - git push origin master
     script:
     - echo "fastlane ios beta"
     after_script:
