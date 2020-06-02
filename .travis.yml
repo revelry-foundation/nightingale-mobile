@@ -32,7 +32,7 @@ jobs:
     - eval "$(ssh-agent -s)"
     - echo "Host github.com" > ~/.ssh/config
     - echo "  IdentityFile  $(pwd)/ci/certs_key" >> ~/.ssh/config
-    - chmod 400 certs_key
+    - chmod 400 ./ci/certs_key
     - git remote set-url origin git@github.com:revelry-foundation/nightingale-mobile.git
     - git commit --allow-empty -m "Empty commit"
     - git push origin verbose-match-fix-travis
