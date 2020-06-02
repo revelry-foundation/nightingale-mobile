@@ -50,7 +50,7 @@ export default class PositiveLocationsContainer extends Container<PositiveLocati
         return get(`${url}?${params}`, undefined)
         .then(positiveLocation => {
           if(positiveLocation.positives.length) {
-            return location
+            return {location, positiveLocation: positiveLocation.positives}
           }
         })
       }))

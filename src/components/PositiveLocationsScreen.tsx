@@ -22,7 +22,7 @@ interface Props {
 class PositiveLocationsScreen extends Component<Props> {
     render() {
         return (
-            <SafeAreaView style={loginStyles.pageWrapper}>
+        <SafeAreaView style={loginStyles.pageWrapper}>
         <ScrollView style={loginStyles.container}>
             <View>
             <View style={loginStyles.spaceVertical}>
@@ -32,7 +32,7 @@ class PositiveLocationsScreen extends Component<Props> {
             </View>
               {this.props.isFetching && <Text>...loading locations...</Text>}
               <View style={loginStyles.list}>
-                {this.props.positiveLocations.map((location: Location) => (
+                {this.props.positiveLocations.map(({location}) => (
                   <View style={loginStyles.listItem} key={location.when}>
                     <TouchableHighlight onPress={() => this.props.navigation.navigate('PositiveLocationScreen')}>
                     <View>

@@ -29,11 +29,6 @@ export class LocationsScreen extends Component<Props> {
   render() {
     return (
       <View style={loginStyles.pageWrapper}>
-        <TouchableHighlight onPress={() => this.props.navigation.navigate("Positive Locations")}>
-          <View>
-            <Text>Crossed Paths</Text> 
-        </View>
-    </TouchableHighlight>
         <ScrollView style={loginStyles.containerCollapsed}>
           {this.props.isFetching && <Text>...loading locations...</Text>}
           <View style={loginStyles.list}>
