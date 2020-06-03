@@ -39,9 +39,11 @@ platform :ios do
 
   desc 'Ship to Testflight.'
   lane :beta do
+    puts "SSH Keys: "
+    sh "ssh-add -l"
     xcversion(version: '11.5')
     setup_travis
-    build
+    # build
     # pilot(username: "robert@revelry.co", skip_waiting_for_build_processing: true, apple_id: "1515352411")
     commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/nightingalemobile.xcodeproj', force: true)
     sh "git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git"
