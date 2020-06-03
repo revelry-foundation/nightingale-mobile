@@ -9,6 +9,7 @@ import {formatDateTime} from '../helpers/dates'
 import * as Colors from '../styles/colors'
 import * as Spacing from '../styles/spacing'
 import * as Size from '../styles/sizes'
+import * as Fonts from '../styles/fonts'
 import {baseCard, cardDivider} from '../styles/components/cards'
 
 const loginStyles = LoginStyles.createStyles()
@@ -21,6 +22,13 @@ interface Props {
   }
 
 class HotspotLocationsScreen extends Component<Props> {
+
+   getHotspotText(positives) {
+    const totalPositives = positives.length
+
+    return `${totalPositives} case(s) of COVID19 reported at this location, within 1 hr of when you were here`
+  }
+
   render() {
     return (
       <SafeAreaView style={loginStyles.pageWrapper}>
@@ -28,7 +36,7 @@ class HotspotLocationsScreen extends Component<Props> {
           <View>
             <View style={loginStyles.spaceVertical}>
             <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
-              <Text style={styles.buttonLink}>Back to Disclaimer</Text>
+              <Text style={styles.buttonLink}>Back</Text>
             </TouchableHighlight>
           <Text style={{...loginStyles.h1, ...loginStyles.textCenter, ...styles.spaceVertical}}>
             Covid 19 Hotspots
@@ -60,11 +68,8 @@ class HotspotLocationsScreen extends Component<Props> {
                   </Text> 
                 </View>
                 <View style={cardDivider}>
-                  <Text style={styles.spaceVertical}>
-                    Hotspot
-                  </Text>
                   <Text style={loginStyles.bodyCopy}>
-                    There are {positives.length} positive(s) that were within 10 meters of this location, +/- 30 minutes from when you were there. 
+                      {this.getHotspotText(positives)}
                   </Text>
                 </View>
                 </View>
