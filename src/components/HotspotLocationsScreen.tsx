@@ -3,7 +3,6 @@ import {Subscribe} from 'unstated'
 import {Text, View, ScrollView, TouchableHighlight, SafeAreaView, StyleSheet} from 'react-native'
 
 import LoginStyles from '../styles/LogInStyles'
-import {Location} from '../containers/LocationStorageContainer'
 import HotspotsContainer from '../containers/HotspotsContainer'
 import {formatDateTime} from '../helpers/dates'
 import * as Colors from '../styles/colors'
@@ -30,8 +29,12 @@ class HotspotLocationsScreen extends Component<Props> {
     return (
       <View style={cardDivider}>
         <Text>
+          <View style={styles.dotView}>
+
+        <View style={styles.dot}/>
+        </View>
           <Text style={bodyCopyMediumBold}>
-            {`${totalPositives}`}
+            {` ${totalPositives}`}
           </Text>
           {` case${pluralizedString} of COVID19 reported at this location within `}
           <Text style={bodyCopyMediumBold}>
@@ -120,6 +123,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingVertical: Spacing.globalPadding,
     fontSize: Size.globalSize,
+  },
+  dot: {
+    backgroundColor: Colors.alert, 
+    borderRadius: 50, 
+    display: 'flex',
+    height: 10,
+    width: 10,
+  },
+  dotView: {
+    paddingRight: Spacing.globalPaddingSmaller,
   },
   spaceVertical: {
     marginVertical: Spacing.globalMarginSmall,
