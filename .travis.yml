@@ -28,7 +28,7 @@ jobs:
     - gem install bundler:2.0.2
     - bundle install
     before_script:
-    - openssl aes-256-cbc -K $encrypted_db4416ddba70_key -iv $encrypted_db4416ddba70_iv -in ./ci/certs_key.enc -out ./ci/certs_key.pub -d
+    - openssl aes-256-cbc -K $encrypted_db4416ddba70_key -iv $encrypted_db4416ddba70_iv -in ./ci/certs_key.enc -out ./ci/certs_key -d
     - chmod 600 ./ci/certs_key
     - chmod 600 ./ci/certs_key.pub
     - eval "$(ssh-agent -s)"
