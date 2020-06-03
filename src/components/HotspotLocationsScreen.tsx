@@ -28,11 +28,10 @@ class HotspotLocationsScreen extends Component<Props> {
     
     return (
       <View style={cardDivider}>
-        <Text>
+        <Text style={[styles.spaceVertical, loginStyles.bodyCopy]}>
           <View style={styles.dotView}>
-
-        <View style={styles.dot}/>
-        </View>
+            <View style={styles.dot}/>
+          </View>
           <Text style={bodyCopyMediumBold}>
             {` ${totalPositives}`}
           </Text>
@@ -80,7 +79,7 @@ class HotspotLocationsScreen extends Component<Props> {
               {this.props.hotspotPositives && this.props.hotspotPositives.map(({location, positives}) => (
               <View style={[baseCard, styles.spaceVertical]} key={location.when}>
                 <View>
-                    <Text style={{ ...loginStyles.h2, ...styles.spaceVertical }}>
+                    <Text style={{ ...loginStyles.h6, ...styles.spaceVertical }}>
                     My Location
                   </Text>
                   <Text style={loginStyles.bodyCopy}>
@@ -126,8 +125,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     backgroundColor: Colors.alert, 
-    borderRadius: 50, 
-    display: 'flex',
+    borderRadius: 50,
     height: 10,
     width: 10,
   },
@@ -135,7 +133,7 @@ const styles = StyleSheet.create({
     paddingRight: Spacing.globalPaddingSmaller,
   },
   spaceVertical: {
-    marginVertical: Spacing.globalMarginSmall,
+    marginVertical: Spacing.globalMargin,
   }
 })
 

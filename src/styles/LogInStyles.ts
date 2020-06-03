@@ -35,6 +35,9 @@ const LoginStyles = {
   h3: {
     ...Headers.h3,
   },
+  h6: {
+    ...Headers.h6,
+  },
   bodyCopy: {
     ...Typography.bodyCopy,
   },
