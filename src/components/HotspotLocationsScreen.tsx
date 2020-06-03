@@ -23,10 +23,11 @@ interface Props {
 
 class HotspotLocationsScreen extends Component<Props> {
 
-   getHotspotText(positives) {
+  getHotspotText(positives) {
     const totalPositives = positives.length
+    const pluralizedString = totalPositives == 1 ? '' : 's'
 
-    return `${totalPositives} case(s) of COVID19 reported at this location, within 1 hr of when you were here`
+    return `${totalPositives} case${pluralizedString} of COVID19 reported at this location within 1 hr of when you were here`
   }
 
   render() {
@@ -57,7 +58,7 @@ class HotspotLocationsScreen extends Component<Props> {
               {this.props.hotspotPositives.map(({location, positives}) => (
               <View style={[baseCard, styles.spaceVertical]} key={location.when}>
                 <View>
-                  <Text style={styles.spaceVertical}>
+                    <Text style={{ ...loginStyles.h2, ...styles.spaceVertical }}>
                     My Location
                   </Text>
                   <Text style={loginStyles.bodyCopy}>
