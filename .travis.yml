@@ -27,6 +27,15 @@ jobs:
     - git clean -d -f
     - gem install bundler:2.0.2
     - bundle install
+    before_script:
+    - openssl aes-256-cbc -K $encrypted_db4416ddba70_key -iv $encrypted_db4416ddba70_iv -in ./ci/certs_key.enc -out ./ci/certs_key -d
+    - openssl aes-256-cbc -K $encrypted_a394b99dc9a8_key -iv $encrypted_a394b99dc9a8_iv -in version_bump_key.enc -out ci/version_bump_key -d
+    - chmod 600 ./ci/certs_key
+    - chmod 600 ./ci/certs_key.pub
+    - chmod 600 ./ci/match_key
+    - chmod 600 ./ci/match_key.pub
+    - eval "$(ssh-agent -s)"
+    - ssh-add ./ci/certs_key
     script:
     - fastlane ios beta
 env:
