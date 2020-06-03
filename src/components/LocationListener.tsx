@@ -72,13 +72,16 @@ class LocationListener extends Component<Props> {
     const {
       coords: {latitude, longitude},
       timestamp,
+      speed,
     } = location
 
-    this.props.locationStorage.recordLocation({
-      latitude: latitude,
-      longitude: longitude,
-      when: timestamp,
-    })
+    if (speed <= 10) {
+      this.props.locationStorage.recordLocation({
+        latitude: latitude,
+        longitude: longitude,
+        when: timestamp,
+      })
+    }
 
     console.log('[location] -', location)
   }
