@@ -3,13 +3,11 @@ import {Subscribe} from 'unstated'
 import {Text, View, ScrollView, TouchableHighlight, SafeAreaView, StyleSheet} from 'react-native'
 
 import LoginStyles from '../styles/LogInStyles'
-import {Location} from '../containers/LocationStorageContainer'
 import HotspotsContainer from '../containers/HotspotsContainer'
 import {formatDateTime} from '../helpers/dates'
 import * as Colors from '../styles/colors'
 import * as Spacing from '../styles/spacing'
 import * as Size from '../styles/sizes'
-import * as Fonts from '../styles/fonts'
 import {baseCard, cardDivider} from '../styles/components/cards'
 
 const loginStyles = LoginStyles.createStyles()
@@ -69,11 +67,12 @@ class HotspotLocationsScreen extends Component<Props> {
                   </Text> 
                 </View>
                 <View style={cardDivider}>
-                  <Text style={loginStyles.bodyCopy}>
+                  <Text style={[loginStyles.bodyCopy, styles.spaceVertical]}>
+                      <View style={styles.dot}/>
                       {this.getHotspotText(positives)}
                   </Text>
                 </View>
-                </View>
+              </View>
               ))}
             </View>
           </View>
@@ -105,6 +104,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingVertical: Spacing.globalPadding,
     fontSize: Size.globalSize,
+  },
+  dot: {
+    backgroundColor: Colors.alert, 
+    borderRadius: 50, 
+    display: 'flex',
+    height: 10,
+    width: 10,
   },
   spaceVertical: {
     marginVertical: Spacing.globalMarginSmall,
