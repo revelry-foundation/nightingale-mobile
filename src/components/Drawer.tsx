@@ -4,7 +4,7 @@ import {ScrollView, SafeAreaView} from 'react-native'
 import DrawerStyles from '../styles/DrawerStyles'
 import Feather from 'react-native-vector-icons/Feather'
 
-const visibleItems: Array<string> = ['Home']
+const visibleItems: Array<string> = ['Home', 'Locations', 'Hotspots']
 
 const getVisible = item => visibleItems.includes(item.key)
 
@@ -20,7 +20,7 @@ class DrawerContent extends Component {
           justifyContent: 'space-between',
         }}
         style={DrawerStyles.drawerContainer}>
-        <SafeAreaView style={DrawerStyles.drawerHeader}></SafeAreaView>
+        <SafeAreaView style={DrawerStyles.drawerHeader} />
         <SafeAreaView
           style={DrawerStyles.drawerContent}
           forceInset={{top: 'always', horizontal: 'never'}}>

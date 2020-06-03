@@ -11,6 +11,8 @@ export const baseCard = {
   borderColor: Colors.dividerColor,
   borderStyle: 'solid',
   borderWidth: 1,
+  paddingHorizontal: Spacing.globalPaddingSmall,
+  paddingVertical: Spacing.globalPaddingSmall
 }
 
 export const card = {
@@ -23,4 +25,11 @@ export const cardExpanded = {
   ...baseCard,
   width: fullWidth,
   flex: 1,
+}
+
+export const cardDivider = {
+  top: Spacing.globalPaddingSmall,
+  borderTopColor: Colors.dividerColor,
+  borderTopWidth: 1,
+  borderStyle: 'solid',
 }
