@@ -46,7 +46,7 @@ platform :ios do
     sh "git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git"
     sh "ssh-add -D"
     sh "ssh-add ../ci/version_bump_key"
-    push_to_git_remote(remote: "ssh-origin", remote_branch: 'verbose-match')
+    push_to_git_remote(remote: "ssh-origin", remote_branch: 'master')
     pilot(username: "robert@revelry.co", skip_waiting_for_build_processing: true, apple_id: "1515352411")
   end
 end

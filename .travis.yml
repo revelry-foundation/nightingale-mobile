@@ -23,6 +23,7 @@ jobs:
     node_js:
     - node
     - lts/*
+    if: branch = master
     before_install:
     - git clean -d -f
     - gem install bundler:2.0.2
