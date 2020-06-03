@@ -11,6 +11,7 @@ import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
 import CovidStatusContainer from './src/containers/CovidStatusContainer'
 import HotspotsContainer from './src/containers/HotspotsContainer'
+import BottomTabs from './src/components/BottomTabs'
 
 const AppNavigator = createSwitchNavigator(
   {
@@ -38,6 +39,7 @@ export default class App extends Component {
       <Provider inject={[locationStorage, statusStorage, hotspotStorage]}>
         <StatusBar barStyle="light-content" />
         <AppContainer />
+        <BottomTabs />
         <LocationListener locationStorage={locationStorage} />
       </Provider>
     )
