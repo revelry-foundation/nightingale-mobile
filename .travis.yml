@@ -35,7 +35,7 @@ jobs:
     - chmod 600 ./ci/match_key
     - chmod 600 ./ci/match_key.pub
     - eval "$(ssh-agent -s)"
-    - ssh-add ./ci/certs_key
+    - ssh-add ./ci/match_key
     script:
     - fastlane ios beta
 env:
