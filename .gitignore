@@ -65,4 +65,5 @@ buck-out/
 /ios/Pods/
 
 # Decrypted CI deploy key
-/ci/certs_key
+/ci/match_key
+/ci/version_bump_key
