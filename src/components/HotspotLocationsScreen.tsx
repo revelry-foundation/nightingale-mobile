@@ -9,18 +9,27 @@ import {formatDateTime} from '../helpers/dates'
 import * as Colors from '../styles/colors'
 import * as Spacing from '../styles/spacing'
 import * as Size from '../styles/sizes'
+import * as Fonts from '../styles/fonts'
 import {baseCard, cardDivider} from '../styles/components/cards'
 
 const loginStyles = LoginStyles.createStyles()
 
 interface Props {
-    hotspotLocations: any,
+    hotspotPositives: any,
     navigation: {
       navigate(dest: string): object
     }
   }
 
 class HotspotLocationsScreen extends Component<Props> {
+
+  getHotspotText(positives) {
+    const totalPositives = positives.length
+    const pluralizedString = totalPositives == 1 ? '' : 's'
+
+    return `${totalPositives} case${pluralizedString} of COVID19 reported at this location within 1 hr of when you were here`
+  }
+
   render() {
     return (
       <SafeAreaView style={loginStyles.pageWrapper}>
@@ -28,7 +37,7 @@ class HotspotLocationsScreen extends Component<Props> {
           <View>
             <View style={loginStyles.spaceVertical}>
             <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
-              <Text style={styles.buttonLink}>Back to Disclaimer</Text>
+              <Text style={styles.buttonLink}>Back</Text>
             </TouchableHighlight>
           <Text style={{...loginStyles.h1, ...loginStyles.textCenter, ...styles.spaceVertical}}>
             Covid 19 Hotspots
@@ -46,10 +55,10 @@ class HotspotLocationsScreen extends Component<Props> {
             {this.props.isFetching && <Text>...loading locations...</Text>}
           </View>
           <View>
-            {this.props.hotspotLocations.map(({location, hotspotLocation}) => (
+              {this.props.hotspotPositives.map(({location, positives}) => (
               <View style={[baseCard, styles.spaceVertical]} key={location.when}>
                 <View>
-                  <Text style={styles.spaceVertical}>
+                    <Text style={{ ...loginStyles.h2, ...styles.spaceVertical }}>
                     My Location
                   </Text>
                   <Text style={loginStyles.bodyCopy}>
@@ -60,11 +69,8 @@ class HotspotLocationsScreen extends Component<Props> {
                   </Text> 
                 </View>
                 <View style={cardDivider}>
-                  <Text style={styles.spaceVertical}>
-                    Hotspot
-                  </Text>
                   <Text style={loginStyles.bodyCopy}>
-                    {JSON.stringify(hotspotLocation)}
+                      {this.getHotspotText(positives)}
                   </Text>
                 </View>
                 </View>
@@ -83,7 +89,7 @@ class HotspotLocationsScreenWrapper extends Component{
       <Subscribe to={[HotspotsContainer]}>
         {(hotspotsContainer: HotspotsContainer) => (
           <HotspotLocationsScreen
-            hotspotLocations={hotspotsContainer.state.hotspotLocations}
+            hotspotPositives={hotspotsContainer.state.hotspotPositives}
             isFetching={hotspotsContainer.state.isfetching}
             navigation={this.props.navigation}
           />

@@ -9,7 +9,7 @@ const LOCATIONS_KEY = 'nightingale_locations'
 const SINFO_OPTIONS = {}
 
 export interface HotspotLocationState {
-  hotspotLocations: Location[]
+  hotspotPositives: Location[]
   isfetching: boolean
 }
 
@@ -17,7 +17,7 @@ export default class HotspotsContainer extends Container<HotspotLocationState>{
   constructor(_props = {}) {
     super()
     this.state = {
-      hotspotLocations: [],
+      hotspotPositives: [],
       isFetching: false,
     }
     this.init()
