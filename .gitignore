@@ -67,3 +67,6 @@ buck-out/
 # Decrypted CI deploy key
 /ci/match_key
 /ci/version_bump_key
+
+# api keys
+.env

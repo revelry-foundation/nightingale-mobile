@@ -8,6 +8,8 @@ import {Typography} from '../styles'
 import Drawer from '../components/Drawer'
 import HomeStack from './HomeStack'
 import SettingsStack from './SettingsStack'
+import LocationsInterface from './LocationStack'
+import HotspotsStack from './HotspotsStack'
 
 const drawerIconSize = 20
 
@@ -25,13 +27,37 @@ const AppStack = createDrawerNavigator(
         ),
       },
     },
+    Locations: {
+      screen: LocationsInterface,
+      navigationOptions: {
+        drawerIcon: ({focused, tintColor}) => (
+          <Feather
+            name="navigation"
+            size={drawerIconSize}
+            color={focused ? tintColor : 'black'}
+          />
+        ),
+      },
+    },
+    Hotspots: {
+      screen: HotspotsStack,
+      navigationOptions: {
+        drawerIcon: ({focused, tintColor}) => (
+          <Feather
+            name="map-pin"
+            size={drawerIconSize}
+            color={focused ? tintColor : 'black'}
+          />
+        ),
+      },
+    },
     Settings: SettingsStack,
   },
   {
     initialRouteName: 'Home',
     contentComponent: Drawer,
     contentOptions: {
-      activeTintColor: '#F37021',
+      activeTintColor: '#1e7ac9',
       labelStyle: {
         fontSize: Typography.bodyFontSizeLarge,
         fontWeight: Typography.fontWeightNormal,

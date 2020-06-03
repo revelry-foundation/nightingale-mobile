@@ -13,6 +13,7 @@ jobs:
       - "~/.npm"
     before_script:
     - npm install -g npm@latest
+    - echo "GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY" > .env
     script:
     - npm ci
     - npx jest --ci --passWithNoTests
@@ -36,6 +37,7 @@ jobs:
     - chmod 600 ./ci/match_key.pub
     - eval "$(ssh-agent -s)"
     - ssh-add ./ci/match_key
+    - echo "GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY" > .env
     script:
     - fastlane ios beta
 env:

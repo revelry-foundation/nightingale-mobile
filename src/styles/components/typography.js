@@ -41,6 +41,11 @@ export const bodyCopyMedium = {
   fontSize: bodyFontSizeMedium,
   lineHeight: bodyLineHeightSmall,
 }
+export const bodyCopyMediumBold = {
+  fontSize: bodyFontSizeMedium,
+  lineHeight: bodyLineHeightSmall,
+  fontWeight: fontWeightBold,
+}
 export const bodyCopySmall = {
   fontSize: bodyFontSizeSmall,
   lineHeight: bodyLineHeightSmall,

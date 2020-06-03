@@ -1,29 +1,23 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Colors} from '../styles'
 import {createStackNavigator} from 'react-navigation-stack'
 import Feather from 'react-native-vector-icons/Feather'
-import HomeScreen from '../components/HomeScreen'
-import CovidStatusScreen from '../components/CovidStatusScreen'
+import LocationsScreen from '../components/LocationsScreen'
+import LocationScreen from '../components/LocationScreen'
 
-export interface HomeStackProps {
-  navigation: {
-    navigate(dest: string): object
-  }
-}
-
-const HomeStack: Component<HomeStackProps> = createStackNavigator(
+const LocationsStack = createStackNavigator(
   {
-    Home: HomeScreen,
-    CovidStatus: CovidStatusScreen,
+    Locations: LocationsScreen,
+    Location: LocationScreen,
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Locations',
     defaultNavigationOptions: ({navigation}) => ({
       headerLeft: () => (
         <Feather
           style={{left: 10}}
           name="menu"
-          size={28}
+          size={32}
           color="white"
           onPress={() => navigation.openDrawer()}
         />
@@ -39,4 +33,4 @@ const HomeStack: Component<HomeStackProps> = createStackNavigator(
   }
 )
 
-export default HomeStack
+export default LocationsStack

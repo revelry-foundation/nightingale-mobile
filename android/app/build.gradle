@@ -152,11 +152,11 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField "String", "API_URL", '"http://localhost:4000/api"'
+            buildConfigField "String", "API_URL", '"http://localhost:4000"'
             signingConfig signingConfigs.debug
         }
         release {
-            buildConfigField "String", "API_URL", '"https://nightingalemobile.revelry-prod.revelry.net/api"'
+            buildConfigField "String", "API_URL", '"https://nightingale-server.nightingale.revelry.org"'
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
             signingConfig signingConfigs.debug
@@ -181,6 +181,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-sensitive-info')
+    implementation project(':@react-native-community_geolocation')
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
