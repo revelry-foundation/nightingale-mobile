@@ -2,16 +2,16 @@ import React from 'react'
 import {Colors} from '../styles'
 import {createStackNavigator} from 'react-navigation-stack'
 import Feather from 'react-native-vector-icons/Feather'
-import LocationsScreen from '../components/LocationsScreen'
-import LocationScreen from '../components/LocationScreen'
+import HotspotLocationsScreen from '../components/HotspotLocationsScreen'
+import HotspotsSplashScreen from '../components/HotspotsSplashScreen'
 
-const LocationsStack = createStackNavigator(
+const HotspotsStack = createStackNavigator(
   {
-    Locations: LocationsScreen,
-    Location: LocationScreen,
+    Hotspots: HotspotsSplashScreen,
+    "Hotspot Locations": HotspotLocationsScreen,
   },
   {
-    initialRouteName: 'Locations',
+    initialRouteName: 'Hotspots',
     defaultNavigationOptions: ({navigation}) => ({
       headerLeft: () => (
         <Feather
@@ -33,4 +33,4 @@ const LocationsStack = createStackNavigator(
   }
 )
 
-export default LocationsStack
+export default HotspotsStack

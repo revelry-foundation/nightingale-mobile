@@ -4,7 +4,7 @@ import {ScrollView, SafeAreaView} from 'react-native'
 import DrawerStyles from '../styles/DrawerStyles'
 import Feather from 'react-native-vector-icons/Feather'
 
-const visibleItems: Array<string> = ['Home', 'Locations']
+const visibleItems: Array<string> = ['Home', 'Locations', 'Hotspots']
 
 const getVisible = item => visibleItems.includes(item.key)
 

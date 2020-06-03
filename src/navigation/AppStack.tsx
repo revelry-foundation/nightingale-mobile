@@ -9,6 +9,7 @@ import Drawer from '../components/Drawer'
 import HomeStack from './HomeStack'
 import SettingsStack from './SettingsStack'
 import LocationsInterface from './LocationStack'
+import HotspotsStack from './HotspotsStack'
 
 const drawerIconSize = 20
 
@@ -31,7 +32,19 @@ const AppStack = createDrawerNavigator(
       navigationOptions: {
         drawerIcon: ({focused, tintColor}) => (
           <Feather
-            name="map"
+            name="navigation"
+            size={drawerIconSize}
+            color={focused ? tintColor : 'black'}
+          />
+        ),
+      },
+    },
+    Hotspots: {
+      screen: HotspotsStack,
+      navigationOptions: {
+        drawerIcon: ({focused, tintColor}) => (
+          <Feather
+            name="map-pin"
             size={drawerIconSize}
             color={focused ? tintColor : 'black'}
           />
