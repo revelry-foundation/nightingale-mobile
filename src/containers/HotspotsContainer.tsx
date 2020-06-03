@@ -32,30 +32,30 @@ export default class HotspotsContainer extends Container<HotspotLocationState>{
   }
 
   fetchMatchingHotspotLocations = async () => {
-    // if you're a covid patient, figure out what to do with this then. 
-    // Just filter out your own locations maybe?
     this.setState({isFetching: true})
 
     return SInfo.getItem(LOCATIONS_KEY, SINFO_OPTIONS)
     .then(locationsEncoded => JSON.parse(locationsEncoded))
-    .then(locations => {
-      return Promise.all(
-        locations.map(location => {
-        const {latitude: lat, longitude: lng, when} = location
-        let params = {lat, lng, when, app_version: version}
-        params = new URLSearchParams(params).toString();
-
-        const url = apiUrl('/api/v1/find_proximate_positives')
-
-        return get(`${url}?${params}`, undefined)
-        .then(positiveLocation => {
-          if(positiveLocation.positives.length) {
-            return {location, hotspotLocation: positiveLocation.positives}
-          }
-        })
-      }))
-    })
+    .then(this.matchingLocations)
     .then(locations => this.setState({hotspotLocations: locations.filter(location => location), isFetching: false}))
+  }
+
+  matchingLocations = (locations) => {
+    return Promise.all(
+      locations.map(location => {
+      const {latitude: lat, longitude: lng, when} = location
+      let params = {lat, lng, when, app_version: version}
+      params = new URLSearchParams(params).toString();
+
+      const url = apiUrl('/api/v1/find_proximate_positives')
+
+      return get(`${url}?${params}`, undefined)
+      .then(positiveLocation => {
+        if(positiveLocation.positives.length) {
+          return {location, hotspotLocation: positiveLocation.positives}
+        }
+      })
+    }))
   }
 }
 
