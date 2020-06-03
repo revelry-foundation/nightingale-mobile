@@ -37,7 +37,9 @@ export default class HotspotsContainer extends Container<HotspotLocationState>{
     return SInfo.getItem(LOCATIONS_KEY, SINFO_OPTIONS)
     .then(locationsEncoded => JSON.parse(locationsEncoded))
     .then(this.matchingLocations)
-    .then(locations => this.setState({hotspotLocations: locations.filter(location => location), isFetching: false}))
+    .then(locations => {
+      this.setState({hotspotPositives: locations.filter(location => location), isFetching: false})
+    })
   }
 
   matchingLocations = (locations) => {
@@ -52,7 +54,7 @@ export default class HotspotsContainer extends Container<HotspotLocationState>{
       return get(`${url}?${params}`, undefined)
       .then(positiveLocation => {
         if(positiveLocation.positives.length) {
-          return {location, hotspotLocation: positiveLocation.positives}
+          return {location, positives: positiveLocation.positives}
         }
       })
     }))
