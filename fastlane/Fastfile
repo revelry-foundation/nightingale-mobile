@@ -37,10 +37,10 @@ platform :ios do
 
   desc 'Ship to Testflight.'
   lane :beta do
-    xcversion(version: '11.5')
-    setup_travis
-    build
-    pilot(username: "robert@revelry.co", skip_waiting_for_build_processing: true, apple_id: "1515352411")
+    # xcversion(version: '11.5')
+    # setup_travis
+    # build
+    # pilot(username: "robert@revelry.co", skip_waiting_for_build_processing: true, apple_id: "1515352411")
     commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/nightingalemobile.xcodeproj', force: true)
     sh "git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git"
     push_to_git_remote(remote: "ssh-origin", remote_branch: 'verbose-match-fix-travis')
