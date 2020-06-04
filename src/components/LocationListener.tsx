@@ -73,7 +73,8 @@ class LocationListener extends Component<Props> {
       coords: {latitude, longitude, speed},
       timestamp,
     } = location
-    const speedInMph = speed && speed * 2.23694 // meters/s -> mph
+    const MPS_TO_MPH_RATE = 2.23694
+    const speedInMph = speed && speed * MPS_TO_MPH_RATE // meters/s -> mph
 
     // only recording locations user was moving under 10 mph at
     if (speedInMph && speedInMph <= 10 || !!speed == false) { // !!speed coerces value of speed to a boolean, to account for null, undefined, 0, all which we want to record by default
