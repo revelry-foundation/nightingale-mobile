@@ -12,6 +12,8 @@ PODS:
     - React-Core (= 0.61.4)
     - React-jsi (= 0.61.4)
     - ReactCommon/turbomodule/core (= 0.61.4)
+  - Firebase/Analytics (6.13.0):
+    - Firebase/Core
   - Firebase/Core (6.13.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.1.6)
@@ -292,22 +294,23 @@ PODS:
   - RNBackgroundGeolocation (3.7.0):
     - CocoaLumberjack (~> 3.5.1)
     - React
-  - RNCMaskedView (0.1.5):
+  - RNCMaskedView (0.1.10):
     - React
   - RNConfigReader (1.0.0):
     - React
-  - RNFBAnalytics (6.2.0):
+  - RNFBAnalytics (6.7.2):
+    - Firebase/Analytics (~> 6.13.0)
     - Firebase/Core (~> 6.13.0)
     - React
     - RNFBApp
-  - RNFBApp (6.2.0):
+  - RNFBApp (6.7.1):
     - Firebase/Core (~> 6.13.0)
     - React
-  - RNGestureHandler (1.5.6):
+  - RNGestureHandler (1.6.1):
     - React
   - RNKeychain (4.0.5):
     - React
-  - RNReanimated (1.7.0):
+  - RNReanimated (1.9.0):
     - React
   - RNScreens (1.0.0-alpha.23):
     - React
@@ -494,13 +497,13 @@ SPEC CHECKSUMS:
   ReactCommon: a6a294e7028ed67b926d29551aa9394fd989c24c
   RNBackgroundFetch: b74694028396d1c58574bff4ad27ed72acd44919
   RNBackgroundGeolocation: ef0b86ccc91ca9ea3e775585f60fe151601d3d50
-  RNCMaskedView: c8b53164b85ecf94c9a44d67082df0f03c1f74cc
+  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
   RNConfigReader: 396da6a6444182a76e8ae0930b9436c7575045cb
-  RNFBAnalytics: 57dc0bfad4e40f68779757653676699072651218
-  RNFBApp: 5b215aacc09105a1761de31b9a0eb2abcce06253
-  RNGestureHandler: 911d3b110a7a233a34c4f800e7188a84b75319c6
+  RNFBAnalytics: 29bc4baf70da8dc04238d2e1c050367264d2f440
+  RNFBApp: 7b539bb25520fa73d6a240f5c6ea569e27683645
+  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNKeychain: 840f8e6f13be0576202aefcdffd26a4f54bfe7b5
-  RNReanimated: 031fe8d9ea93c2bd689a40f05320ef9d96f74d7f
+  RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: f28b48b8345f2f5f39ed6195518291515032a788
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f

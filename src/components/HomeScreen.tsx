@@ -25,7 +25,7 @@ class HomeScreen extends Component<HomeStackProps> {
   render() {
     return (
       <View style={loginStyles.pageWrapper}>
-        <NavigationEvents onDidFocus={this.onDidFocus} />
+        {/* <NavigationEvents onDidFocus={this.onDidFocus} /> */}
         <ScrollView
           style={loginStyles.container}
           refreshControl={

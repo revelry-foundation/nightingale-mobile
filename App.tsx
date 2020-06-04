@@ -6,6 +6,7 @@ import React, {Component} from 'react'
 import {Provider} from 'unstated'
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {StatusBar} from 'react-native'
+import {NavigationContainer} from '@react-navigation/native'
 import AppStack from './src/navigation/AppStack'
 import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
@@ -37,10 +38,12 @@ export default class App extends Component {
 
     return (
       <Provider inject={[locationStorage, statusStorage, hotspotStorage]}>
-        <StatusBar barStyle="light-content" />
-        <AppContainer />
-        <BottomTabs />
-        <LocationListener locationStorage={locationStorage} />
+        {/* <StatusBar barStyle="light-content" />
+        <AppContainer /> */}
+        <NavigationContainer>
+          <BottomTabs />
+        </NavigationContainer>
+        {/* <LocationListener locationStorage={locationStorage} /> */}
       </Provider>
     )
   }
