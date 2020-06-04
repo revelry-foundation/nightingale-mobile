@@ -74,18 +74,23 @@ class LocationListener extends Component<Props> {
       timestamp,
     } = location
     const MPS_TO_MPH_RATE = 2.23694
-    const speedInMph = speed && speed * MPS_TO_MPH_RATE // meters/s -> mph
 
-    // only recording locations user was moving under 10 mph at
-    if (speedInMph && speedInMph <= 10 || !!speed == false) { // !!speed coerces value of speed to a boolean, to account for null, undefined, 0, all which we want to record by default
-      this.props.locationStorage.recordLocation({
-        latitude: latitude,
-        longitude: longitude,
-        when: timestamp,
-      })
+    if (typeof speed == 'number') {
+      const speedInMph = speed * MPS_TO_MPH_RATE
+      if (speedInMph <= 10) {
+        this.recordLocation(latitude, longitude, timestamp)
+      }
+    } else {
+      // case where phone doesn't know what the speed is
+      this.recordLocation(latitude, longitude, timestamp)
     }
 
     console.log('[location] -', location)
+  }
+  recordLocation(latitude: number, longitude: number, when: string) {
+    this.props.locationStorage.recordLocation({
+      latitude, longitude, when
+    })
   }
   onError(error) {
     console.warn('[location] ERROR -', error)
