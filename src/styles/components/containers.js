@@ -13,9 +13,7 @@ export const pageWrapper = {
 }
 export const base = {
   backgroundColor: Colors.white,
-  borderRadius: Global.globalRadiusLarge,
   flex: 1,
-  marginTop: Spacing.globalMargin,
   padding: Spacing.globalPadding,
 }
 export const container = {
