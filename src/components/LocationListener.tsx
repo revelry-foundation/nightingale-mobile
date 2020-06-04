@@ -87,7 +87,7 @@ class LocationListener extends Component<Props> {
 
     console.log('[location] -', location)
   }
-  recordLocation(latitude: number, longitude: number, when: string) {
+  recordLocation(latitude, longitude, when) {
     this.props.locationStorage.recordLocation({
       latitude, longitude, when
     })
