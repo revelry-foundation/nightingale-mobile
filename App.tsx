@@ -4,24 +4,13 @@
  */
 import React, {Component} from 'react'
 import {Provider} from 'unstated'
-import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {StatusBar} from 'react-native'
-import AppStack from './src/navigation/AppStack'
+import {NavigationContainer} from '@react-navigation/native'
 import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
 import CovidStatusContainer from './src/containers/CovidStatusContainer'
 import HotspotsContainer from './src/containers/HotspotsContainer'
-
-const AppNavigator = createSwitchNavigator(
-  {
-    App: AppStack,
-  },
-  {
-    initialRouteName: 'App',
-  }
-)
-
-const AppContainer = createAppContainer(AppNavigator)
+import BottomTabs from './src/components/BottomTabs'
 
 export default class App extends Component {
   async componentDidMount() {
@@ -36,8 +25,10 @@ export default class App extends Component {
 
     return (
       <Provider inject={[locationStorage, statusStorage, hotspotStorage]}>
-        <StatusBar barStyle="light-content" />
-        <AppContainer />
+       <StatusBar barStyle="light-content" />
+        <NavigationContainer>
+          <BottomTabs />
+        </NavigationContainer>
         <LocationListener locationStorage={locationStorage} />
       </Provider>
     )

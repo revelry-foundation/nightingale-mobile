@@ -40,7 +40,7 @@ export class CovidStatusIndicator extends Component<Props, {}> {
         <View style={loginStyles.buttonContainer}>
           <TouchableHighlight
             style={loginStyles.button}
-            onPress={() => navigate('CovidStatus')}
+            onPress={() => navigate('Covid Status')}
             underlayColor="transparent">
             <Text style={loginStyles.buttonText}>Update Status</Text>
           </TouchableHighlight>

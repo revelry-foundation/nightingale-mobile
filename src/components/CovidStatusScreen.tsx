@@ -1,18 +1,16 @@
 import React, {Component} from 'react'
 import {Subscribe} from 'unstated'
 import {Text, View, ScrollView, Switch, TouchableHighlight} from 'react-native'
-
 import LoginStyles from '../styles/LogInStyles'
-import BusyButton from './BusyButton'
 import LocationUploadContainer from '../containers/LocationUploadContainer'
 import LocationStorageContainer, {
   Location,
 } from '../containers/LocationStorageContainer'
 import {formatDate} from '../helpers/dates'
+import CovidStatusContainer from '../containers/CovidStatusContainer'
 
 const loginStyles = LoginStyles.createStyles()
 
-import CovidStatusContainer from '../containers/CovidStatusContainer'
 
 interface Props {
   statusContainer: CovidStatusContainer
@@ -83,12 +81,6 @@ export class CovidStatusScreen extends Component<Props, State> {
                 </Text>
               </TouchableHighlight>
             </View>
-
-            <TouchableHighlight
-              onPress={() => navigate('Home')}
-              underlayColor="transparent">
-              <Text style={loginStyles.textLink}>Back</Text>
-            </TouchableHighlight>
           </ScrollView>
         </View>
       )
@@ -137,12 +129,6 @@ export class CovidStatusScreen extends Component<Props, State> {
               onValueChange={this.handleUploadValueChange}
             />
           </View>
-
-          <TouchableHighlight
-            onPress={() => navigate('Home')}
-            underlayColor="transparent">
-            <Text style={loginStyles.textLink}>Back</Text>
-          </TouchableHighlight>
         </ScrollView>
       </View>
     )

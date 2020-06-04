@@ -51,20 +51,17 @@ class HotspotLocationsScreen extends Component<Props> {
         <ScrollView style={loginStyles.container}>
           <View>
             <View style={styles.spaceVertical}>
-            <TouchableHighlight onPress={() => this.props.navigation.goBack()}>
-              <Text style={styles.buttonLink}>Back</Text>
-            </TouchableHighlight>
-          <Text style={{...loginStyles.h1, ...loginStyles.textCenter, ...styles.spaceVertical}}>
-            Covid 19 Hotspots
-          </Text>
-          <Text style={styles.spaceVertical}>
-            Possible Matches Based on Date, Time and Location
-          </Text>
-          <Text style={loginStyles.bodyCopySmall}>
-            This list indicates possible matches 
-            between your locations and known hotspots. 
-            These possible matches are based on the date and time of each location.
-          </Text>
+              <Text style={{...loginStyles.h1, ...loginStyles.textCenter, ...styles.spaceVertical}}>
+                Covid 19 Hotspots
+              </Text>
+              <Text style={styles.spaceVertical}>
+                Possible Matches Based on Date, Time and Location
+              </Text>
+              <Text style={loginStyles.bodyCopySmall}>
+                This list indicates possible matches 
+                between your locations and known hotspots. 
+                These possible matches are based on the date and time of each location.
+              </Text>
           </View>
           <View>
             {this.props.isFetching && <Text>...loading locations...</Text>}
