@@ -1,36 +1,20 @@
 import React from 'react'
 import {Colors} from '../styles'
-import {createStackNavigator} from 'react-navigation-stack'
 import Feather from 'react-native-vector-icons/Feather'
 import LocationsScreen from '../components/LocationsScreen'
 import LocationScreen from '../components/LocationScreen'
+import {createStackNavigator} from '@react-navigation/stack'
 
-const LocationsStack = createStackNavigator(
-  {
-    Locations: LocationsScreen,
-    Location: LocationScreen,
-  },
-  {
-    initialRouteName: 'Locations',
-    defaultNavigationOptions: ({navigation}) => ({
-      headerLeft: () => (
-        <Feather
-          style={{left: 10}}
-          name="menu"
-          size={32}
-          color="white"
-          onPress={() => navigation.openDrawer()}
-        />
-      ),
-      headerStyle: {
-        backgroundColor: Colors.brandPrimary,
-        shadowColor: 'transparent',
-      },
-      headerTitleStyle: {
-        color: 'white',
-      },
-    }),
-  }
-)
+
+const LocationStackNavigator = createStackNavigator();
+
+function LocationsStack() {
+  return (
+    <LocationStackNavigator.Navigator>
+      <LocationStackNavigator.Screen name="Locations" component={LocationsScreen} />
+      <LocationStackNavigator.Screen name="Location" component={LocationScreen} />
+    </LocationStackNavigator.Navigator>
+  );
+}
 
 export default LocationsStack

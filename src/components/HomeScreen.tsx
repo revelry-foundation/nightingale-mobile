@@ -4,12 +4,11 @@ import {NavigationEvents} from 'react-navigation'
 import Feather from 'react-native-vector-icons/Feather'
 
 import LoginStyles from '../styles/LogInStyles'
-import {HomeStackProps} from '../navigation/HomeStack'
 import CovidStatusIndicator from './CovidStatusIndicator'
 
 const loginStyles = LoginStyles.createStyles()
 
-class HomeScreen extends Component<HomeStackProps> {
+class HomeScreen extends Component {
   static navigationOptions = {
     drawerIcon: <Feather name="home" size={16} color="black" />,
   }

@@ -1,42 +1,19 @@
 import React, {Component} from 'react'
-import {Colors} from '../styles'
-import {createStackNavigator} from 'react-navigation-stack'
-import Feather from 'react-native-vector-icons/Feather'
+// import {Colors} from '../styles'
+// import Feather from 'react-native-vector-icons/Feather'
 import HomeScreen from '../components/HomeScreen'
 import CovidStatusScreen from '../components/CovidStatusScreen'
+import {createStackNavigator} from '@react-navigation/stack'
 
-export interface HomeStackProps {
-  navigation: {
-    navigate(dest: string): object
-  }
+const HomeStackNavigator = createStackNavigator();
+
+function HomeStack() {
+  return (
+    <HomeStackNavigator.Navigator>
+      <HomeStackNavigator.Screen name="Home" component={HomeScreen} />
+      <HomeStackNavigator.Screen name="Covid Status" component={CovidStatusScreen} />
+    </HomeStackNavigator.Navigator>
+  );
 }
-
-const HomeStack: Component<HomeStackProps> = createStackNavigator(
-  {
-    Home: HomeScreen,
-    CovidStatus: CovidStatusScreen,
-  },
-  {
-    initialRouteName: 'Home',
-    defaultNavigationOptions: ({navigation}) => ({
-      headerLeft: () => (
-        <Feather
-          style={{left: 10}}
-          name="menu"
-          size={28}
-          color="white"
-          onPress={() => navigation.openDrawer()}
-        />
-      ),
-      headerStyle: {
-        backgroundColor: Colors.brandPrimary,
-        shadowColor: 'transparent',
-      },
-      headerTitleStyle: {
-        color: 'white',
-      },
-    }),
-  }
-)
 
 export default HomeStack

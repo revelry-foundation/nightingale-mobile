@@ -83,12 +83,6 @@ export class CovidStatusScreen extends Component<Props, State> {
                 </Text>
               </TouchableHighlight>
             </View>
-
-            <TouchableHighlight
-              onPress={() => navigate('Home')}
-              underlayColor="transparent">
-              <Text style={loginStyles.textLink}>Back</Text>
-            </TouchableHighlight>
           </ScrollView>
         </View>
       )

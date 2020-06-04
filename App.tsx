@@ -14,17 +14,6 @@ import CovidStatusContainer from './src/containers/CovidStatusContainer'
 import HotspotsContainer from './src/containers/HotspotsContainer'
 import BottomTabs from './src/components/BottomTabs'
 
-const AppNavigator = createSwitchNavigator(
-  {
-    App: AppStack,
-  },
-  {
-    initialRouteName: 'App',
-  }
-)
-
-const AppContainer = createAppContainer(AppNavigator)
-
 export default class App extends Component {
   async componentDidMount() {
     global.apiConfig = {
@@ -38,12 +27,11 @@ export default class App extends Component {
 
     return (
       <Provider inject={[locationStorage, statusStorage, hotspotStorage]}>
-        {/* <StatusBar barStyle="light-content" />
-        <AppContainer /> */}
+       <StatusBar barStyle="light-content" />
         <NavigationContainer>
           <BottomTabs />
         </NavigationContainer>
-        {/* <LocationListener locationStorage={locationStorage} /> */}
+        <LocationListener locationStorage={locationStorage} />
       </Provider>
     )
   }

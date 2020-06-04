@@ -9,27 +9,20 @@ const loginStyles = LoginStyles.createStyles()
 
 export default class LocationScreen extends Component {
 
-  handleGoBack = () => this.props.navigation.goBack()
-
   handleDeleteLocation = () => {
-    const deleteLocation = this.props.navigation.getParam("deleteLocation")
-    const timestamp = this.props.navigation.getParam("location").when
+    const deleteLocation = this.props.route.params.deleteLocation
+    const timestamp = this.props.route.params.location.when
     deleteLocation(timestamp)
     this.props.navigation.goBack()
   }
 
-
   render() {
-    const location =  this.props.navigation.getParam("location")
+    console.log(this.props)
+    const location =  this.props.route.params.location
     
     return (
       <SafeAreaView style={loginStyles.pageWrapper}>
         <ScrollView style={loginStyles.container}>
-          <View style={styles.spaceVertical}>
-            <TouchableHighlight onPress={this.handleGoBack}>
-              <Text style={styles.buttonLink}>Back</Text>
-            </TouchableHighlight>
-          </View>
           <Text style={loginStyles.h3}>
             {location && location.address}
           </Text>

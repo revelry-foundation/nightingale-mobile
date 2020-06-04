@@ -3,20 +3,24 @@ import React, {Component} from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Feather from 'react-native-vector-icons/Feather'
 
-import HotspotsSplashScreen from '../components/HotspotsSplashScreen'
-import HomeScreen from '../components/HomeScreen'
+import HotspotsStack from '../navigation/HotspotsStack'
+import HomeStack from '../navigation/HomeStack'
+import LocationsStack from '../navigation/LocationStack'
+import CovidStatusScreen from '../components/CovidStatusScreen'
+
 import LocationsScreen from '../components/LocationsScreen'
 
 const iconSize = 20
 const Tab = createBottomTabNavigator()
 
 class BottomTabs extends Component {
+
   render() {
     return (
       <Tab.Navigator>
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={HomeStack}
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({focused, tintColor}) => (
@@ -30,7 +34,7 @@ class BottomTabs extends Component {
         />
         <Tab.Screen
           name="Locations"
-          component={LocationsScreen}
+          component={LocationsStack}
           options={{
             tabBarLabel: 'Locations',
             tabBarIcon: ({focused, tintColor}) => (
@@ -44,7 +48,7 @@ class BottomTabs extends Component {
         />
         <Tab.Screen
           name="Hotspots"
-          component={HotspotsSplashScreen}
+          component={HotspotsStack}
           options={{
             tabBarLabel: 'Hotspots',
             tabBarIcon: ({focused, tintColor}) => (
