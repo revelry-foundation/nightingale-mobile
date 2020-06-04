@@ -1,10 +1,7 @@
 import React from 'react'
-import {Colors} from '../styles'
-import Feather from 'react-native-vector-icons/Feather'
 import LocationsScreen from '../components/LocationsScreen'
 import LocationScreen from '../components/LocationScreen'
 import {createStackNavigator} from '@react-navigation/stack'
-
 
 const LocationStackNavigator = createStackNavigator();
 

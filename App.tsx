@@ -4,10 +4,8 @@
  */
 import React, {Component} from 'react'
 import {Provider} from 'unstated'
-import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {StatusBar} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native'
-import AppStack from './src/navigation/AppStack'
 import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
 import CovidStatusContainer from './src/containers/CovidStatusContainer'

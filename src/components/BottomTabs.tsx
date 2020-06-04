@@ -1,14 +1,9 @@
 import React, {Component} from 'react'
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Feather from 'react-native-vector-icons/Feather'
-
 import HotspotsStack from '../navigation/HotspotsStack'
 import HomeStack from '../navigation/HomeStack'
 import LocationsStack from '../navigation/LocationStack'
-import CovidStatusScreen from '../components/CovidStatusScreen'
-
-import LocationsScreen from '../components/LocationsScreen'
 
 const iconSize = 20
 const Tab = createBottomTabNavigator()
