@@ -6,8 +6,10 @@ import HotspotsStack from '../navigation/HotspotsStack'
 import HomeStack from '../navigation/HomeStack'
 import LocationsStack from '../navigation/LocationStack'
 import OnboardingSplashScreen from '../components/OnboardingSplashScreen'
-import OnboardingDisclaimerScreen from '../components/OnboardingDisclaimerScreen'
-import OnboardingLocationRequestScreen from '../components/OnboardingLocationRequestScreen'
+import OnboardingDisclaimerScreen, 
+{OnboardingDisclaimerScreen2, 
+  OnboardingDisclaimerScreen3, 
+  OnboardingDisclaimerScreen4} from '../components/OnboardingDisclaimerScreen'
 
 const iconSize = 20
 const Tab = createBottomTabNavigator()
@@ -18,7 +20,9 @@ export function OnboardingStack() {
     <OnboardingStackNavigator.Navigator screenOptions={{title: null}} header={null} headerMode='none'>
       <OnboardingStackNavigator.Screen name="Onboarding" component={OnboardingSplashScreen}/>
       <OnboardingStackNavigator.Screen name="OnboardingDisclaimer" component={OnboardingDisclaimerScreen} />
-      <OnboardingStackNavigator.Screen name="OnboardingLocationRequest" component={OnboardingLocationRequestScreen} />
+      <OnboardingStackNavigator.Screen name="OnboardingDisclaimer2" component={OnboardingDisclaimerScreen2} />
+      <OnboardingStackNavigator.Screen name="OnboardingDisclaimer3" component={OnboardingDisclaimerScreen3} />
+      <OnboardingStackNavigator.Screen name="OnboardingDisclaimer4" component={OnboardingDisclaimerScreen4} />
       <OnboardingStackNavigator.Screen name="To App" component={BottomTabs}/>
     </OnboardingStackNavigator.Navigator>
   )

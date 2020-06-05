@@ -38,6 +38,12 @@ const LoginStyles = {
   h3: {
     ...Headers.h3,
   },
+  h4: {
+    ...Headers.h4,
+  },
+  h5: {
+    ...Headers.h5,
+  },
   h6: {
     ...Headers.h6,
   },
@@ -63,8 +69,15 @@ const LoginStyles = {
     ...Buttons.primary,
     ...Buttons.narrow,
   },
+  buttonSecondary: {
+    ...Buttons.secondary,
+    ...Buttons.narrow,
+  },
   buttonText: {
     ...Buttons.primaryText,
+  },
+  buttonSecondaryText: {
+    ...Buttons.secondaryText,
   },
   buttonWhite: {
     ...Buttons.white,

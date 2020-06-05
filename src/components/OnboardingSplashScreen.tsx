@@ -17,7 +17,7 @@ class OnboardingSplashScreen extends Component{
         <Text style={loginStyles.h3}> 
           Using innovation to build safe and healthy communities in Louisiana
         </Text>
-        <Text style={[loginStyles.bodyCopy, loginStyles.textCenter]}>
+        <Text style={[loginStyles.bodyCopy, loginStyles.textCenter, styles.spaceVertical]}>
         The impact of the COVID-19 pandemic has been felt by everyone in Louisiana; particularly individuals in our most vulnerable communities.
         We believe there is an opportunity to leverage our intellectual and technical assets to incite others to help develop a solution that supports our community leaders and public health officials to keep our communities safe and healthy.
         </Text>
