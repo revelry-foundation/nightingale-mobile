@@ -70,17 +70,27 @@ class LocationListener extends Component<Props> {
   }
   onLocation = (location: Location) => {
     const {
-      coords: {latitude, longitude},
+      coords: {latitude, longitude, speed},
       timestamp,
     } = location
+    const MPS_TO_MPH_RATE = 2.23694
 
-    this.props.locationStorage.recordLocation({
-      latitude: latitude,
-      longitude: longitude,
-      when: timestamp,
-    })
+    if (typeof speed == 'number') {
+      const speedInMph = speed * MPS_TO_MPH_RATE
+      if (speedInMph <= 10) {
+        this.recordLocation(latitude, longitude, timestamp)
+      }
+    } else {
+      // case where phone doesn't know what the speed is
+      this.recordLocation(latitude, longitude, timestamp)
+    }
 
     console.log('[location] -', location)
+  }
+  recordLocation(latitude, longitude, when) {
+    this.props.locationStorage.recordLocation({
+      latitude, longitude, when
+    })
   }
   onError(error) {
     console.warn('[location] ERROR -', error)
