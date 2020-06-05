@@ -16,6 +16,9 @@ const LoginStyles = {
   pageWrapper: {
     ...Containers.pageWrapper,
   },
+  onboardingWrapper: {
+    ...Containers.onboardingWrapper,
+  },
   container: {
     ...Containers.container,
   },

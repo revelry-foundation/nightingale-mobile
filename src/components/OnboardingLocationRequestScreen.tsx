@@ -10,7 +10,7 @@ const loginStyles = LoginStyles.createStyles()
 class OnboardingLocationRequestScreen extends Component{
   render() {
     return(
-    <View style={[loginStyles.container]}>
+    <View style={[loginStyles.container, loginStyles.onboardingWrapper]}>
     <Text style={styles.spaceVertical}> 
     Something about how we dont save locations to the database, its all just on your phone and its private. we just give you the tools you need to do your part in keeping other safe...
     </Text>

@@ -11,7 +11,7 @@ const loginStyles = LoginStyles.createStyles()
 class OnboardingDisclaimerScreen extends Component{
   render() {
     return(
-<View style={[loginStyles.container]}>
+  <View style={[loginStyles.container, loginStyles.onboardingWrapper]}>
   <Text style={loginStyles.h1}>Disclaimer</Text>
 <Text style={styles.spaceVertical}> Disclaimer body text here </Text>
 <View style={[loginStyles.buttonContainer, styles.spaceVertical]}>
