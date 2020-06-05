@@ -22,19 +22,19 @@ platform :ios do
     cocoapods(
       podfile: "./ios/Podfile"
     )
-    disable_automatic_code_signing(path: './ios/nightingalemobile.xcodeproj')
+    disable_automatic_code_signing(path: './ios/NightingaleMobile.xcodeproj')
     update_project_provisioning(
-      xcodeproj: './ios/nightingalemobile.xcodeproj',
+      xcodeproj: './ios/NightingaleMobile.xcodeproj',
       build_configuration: 'Release',
       profile: ENV['sigh_co.revelry.nightingale_appstore_profile-path']
     )
     update_project_team(
-      path: "./ios/nightingalemobile.xcodeproj",
+      path: "./ios/NightingaleMobile.xcodeproj",
       teamid: ENV['sigh_co.revelry.nightingale_appstore_team-id']
     )
-    increment_build_number(xcodeproj: './ios/nightingalemobile.xcodeproj')
-    gym(workspace: './ios/nightingalemobile.xcworkspace', configuration: 'Release', scheme: 'NightingaleMobile')
-    enable_automatic_code_signing(path: './ios/nightingalemobile.xcodeproj')
+    increment_build_number(xcodeproj: './ios/NightingaleMobile.xcodeproj')
+    gym(workspace: './ios/NightingaleMobile.xcworkspace', configuration: 'Release', scheme: 'NightingaleMobile')
+    enable_automatic_code_signing(path: './ios/NightingaleMobile.xcodeproj')
   end
 
   desc 'Ship to Testflight.'
@@ -42,7 +42,7 @@ platform :ios do
     xcversion(version: '11.5')
     setup_travis
     build
-    commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/nightingalemobile.xcodeproj', force: true)
+    commit_version_bump(message: '[skip travis] Bump build ios', xcodeproj: './ios/NightingaleMobile.xcodeproj', force: true)
     sh "git remote add ssh-origin git@github.com:revelry-foundation/nightingale-mobile.git"
     sh "ssh-add -D"
     sh "ssh-add ../ci/version_bump_key"
