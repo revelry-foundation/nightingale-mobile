@@ -1,12 +1,24 @@
 import React, {Component} from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import {createStackNavigator} from '@react-navigation/stack'
 import Feather from 'react-native-vector-icons/Feather'
 import HotspotsStack from '../navigation/HotspotsStack'
 import HomeStack from '../navigation/HomeStack'
 import LocationsStack from '../navigation/LocationStack'
+import OnboardingSplashScreen from '../components/OnboardingSplashScreen'
 
 const iconSize = 20
 const Tab = createBottomTabNavigator()
+const OnboardingStackNavigator = createStackNavigator();
+
+export function OnboardingStack() { 
+  return (
+    <OnboardingStackNavigator.Navigator screenOptions={{title: null}} header={null} headerMode='none'>
+      <OnboardingStackNavigator.Screen name="Onboarding" component={OnboardingSplashScreen}/>
+      <OnboardingStackNavigator.Screen name="To App" component={BottomTabs}/>
+    </OnboardingStackNavigator.Navigator>
+  )
+}
 
 class BottomTabs extends Component {
 

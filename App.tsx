@@ -10,7 +10,7 @@ import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
 import CovidStatusContainer from './src/containers/CovidStatusContainer'
 import HotspotsContainer from './src/containers/HotspotsContainer'
-import BottomTabs from './src/components/BottomTabs'
+import {OnboardingStack} from './src/components/BottomTabs'
 
 export default class App extends Component {
   async componentDidMount() {
@@ -27,7 +27,7 @@ export default class App extends Component {
       <Provider inject={[locationStorage, statusStorage, hotspotStorage]}>
        <StatusBar barStyle="light-content" />
         <NavigationContainer>
-          <BottomTabs />
+          <OnboardingStack />
         </NavigationContainer>
         <LocationListener locationStorage={locationStorage} />
       </Provider>
