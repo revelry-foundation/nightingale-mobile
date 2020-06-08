@@ -1,32 +1,12 @@
 import React, {Component} from 'react'
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import {createStackNavigator} from '@react-navigation/stack'
 import Feather from 'react-native-vector-icons/Feather'
 import HotspotsStack from '../navigation/HotspotsStack'
 import HomeStack from '../navigation/HomeStack'
 import LocationsStack from '../navigation/LocationStack'
-import OnboardingSplashScreen from '../components/OnboardingSplashScreen'
-import OnboardingDisclaimerScreen, 
-{OnboardingDisclaimerScreen2, 
-  OnboardingDisclaimerScreen3, 
-  OnboardingDisclaimerScreen4} from '../components/OnboardingDisclaimerScreen'
 
 const iconSize = 20
 const Tab = createBottomTabNavigator()
-const OnboardingStackNavigator = createStackNavigator();
-
-export function OnboardingStack() { 
-  return (
-    <OnboardingStackNavigator.Navigator screenOptions={{title: null}} header={null} headerMode='none'>
-      <OnboardingStackNavigator.Screen name="Onboarding" component={OnboardingSplashScreen}/>
-      <OnboardingStackNavigator.Screen name="OnboardingDisclaimer" component={OnboardingDisclaimerScreen} />
-      <OnboardingStackNavigator.Screen name="OnboardingDisclaimer2" component={OnboardingDisclaimerScreen2} />
-      <OnboardingStackNavigator.Screen name="OnboardingDisclaimer3" component={OnboardingDisclaimerScreen3} />
-      <OnboardingStackNavigator.Screen name="OnboardingDisclaimer4" component={OnboardingDisclaimerScreen4} />
-      <OnboardingStackNavigator.Screen name="To App" component={BottomTabs}/>
-    </OnboardingStackNavigator.Navigator>
-  )
-}
 
 class BottomTabs extends Component {
 

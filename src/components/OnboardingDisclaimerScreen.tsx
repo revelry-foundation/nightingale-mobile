@@ -84,13 +84,13 @@ export class OnboardingDisclaimerScreen4 extends Component{
   render() {
     return(
   <View style={[loginStyles.container, loginStyles.onboardingWrapper]}>
-  <Text style={loginStyles.h1}>Better Together</Text>
+  <Text style={loginStyles.h1}>Open Source</Text>
   <View>
 
 <Text style={[loginStyles.bodyCopy, styles.spaceVertical]}>
   We would never ask you to simply trust us with this amount of privacy. That's why the complete source code for every piece of the app and its infrastructure are available on <Text style={{color: Colors.brandPrimaryLight, fontWeight: 'bold'}} onPress={() => Linking.openURL('http://www.github.com/revelry-foundation/nightingale')}>Github</Text> where we're hosting and building NIGHTINGALE in an Open Source manner.
 </Text>
-<Text style={[loginStyles.bodyCopy, styles.spaceVertical]}>In order for us to accurately provide you with COVID-19 Hotspots in your area, we will need to access your location.</Text>
+<Text style={[loginStyles.bodyCopy, styles.spaceVertical]}>In order for us to accurately provide you with COVID-19 Hotspots in your area, we will need to access your location changes.</Text>
   </View>
 <View style={[loginStyles.buttonContainer, styles.spaceVertical]}>
   <TouchableHighlight

@@ -10,7 +10,7 @@ import LocationListener from './src/components/LocationListener'
 import LocationStorageContainer from './src/containers/LocationStorageContainer'
 import CovidStatusContainer from './src/containers/CovidStatusContainer'
 import HotspotsContainer from './src/containers/HotspotsContainer'
-import {OnboardingStack} from './src/components/BottomTabs'
+import OnboardingStack from './src/navigation/OnboardingStack'
 
 export default class App extends Component {
   async componentDidMount() {
