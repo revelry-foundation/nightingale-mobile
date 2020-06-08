@@ -11,6 +11,12 @@ export const pageWrapper = {
   flex: 1,
   width: fullWidth,
 }
+export const onboardingWrapper = {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: fullWidth,
+}
 export const base = {
   backgroundColor: Colors.white,
   flex: 1,

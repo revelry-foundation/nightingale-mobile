@@ -12,7 +12,7 @@ export const fontWeightNormal = '400'
 export const fontWeightMedium = '600'
 export const fontWeightBold = '700'
 
-export const bodyLineHeight = 28
+export const bodyLineHeight = 25
 export const bodyLineHeightLarge = 30
 export const bodyLineHeightSmall = 20
 
